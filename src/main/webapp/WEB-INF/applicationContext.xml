@@ -33,6 +33,7 @@
 				<prop key="hibernate.show_sql">true</prop> <!--Permite exibir sentenca SQL no console -->
 				<prop key="hibernate.bytecode.use_reflection_optimizer">true</prop>
 				<prop key="hibernate.temp.use_jdbc_metadata_defaults">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<!--false: gera-se classe para getters e setters em tempo de execucao; 
 					true: gera-se o bytecode na inicializacao (mais lenta) -->
 			</props>
