@@ -62,16 +62,17 @@
                             <h:outputText value="#{msgs['cliente.exclusaoCadastro']}: " styleClass="labelsBold" />
                             <h:panelGrid columns="2" >
                                 <p:commandLink value="#{msgs['cliente.cliqueExcluir']}"
-                                        styleClass="hiperlink" onclick="confirmation.show()" >
+                                        styleClass="hiperlink" onclick="PF('confirmation').show();" >
                                     <f:setPropertyActionListener value="#{clienteBean.cliente}" target="#{clienteBean.cliente}" />
                                 </p:commandLink>
                                 <h:graphicImage id="imageExclusao" height="30" value="../images/excluir.png" />
+                                
                                 <p:confirmDialog id="confirmDialog" message="#{msgs['cliente.confirmaExclusao']}"  
                                                  header="#{msgs['cliente.excluirClientePergunta']} " severity="alert" 
                                                  widgetVar="confirmation">
-                                    <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="confirmation.hide()"  
+                                    <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="PF('confirmation').hide();"  
                                                      action="#{clienteBean.excluirCliente}" ajax="false" />
-                                    <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="confirmation.hide()" 
+                                    <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="PF('confirmation').hide();" 
                                                      type="button" />   
                                 </p:confirmDialog>
                                 
