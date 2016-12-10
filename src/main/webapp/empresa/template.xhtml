@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : mostraProdutos
+    Created on : 30 mai 2014, 10:07:44
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">   
+
+    <f:view locale="#{localeBean.locale}">
+        <h:head>
+            <link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+        </h:head>
+        <h:body>
+            
+             
+            <div align="center" style="margin:0px;">
+                <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                         border: 1px solid blueviolet; width: 1055px">
+                    <h:panelGrid columns="2" columnClasses="tabelaRich,alignTop">
+                        <h:form id="menuForm1">
+                            <h:panelGrid columns="1" columnClasses="alignLeft" 
+                                         width="200" style="vertical-align: top">
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich">
+                                    <h:graphicImage id="imageHome" height="40" value="../images/home.png" />
+                                    <h:commandLink action="empresa" value="#{msgs['system.home']}" styleClass="hiperlink" />
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich">
+                                    <h:graphicImage id="imageProdutos" height="40" value="../images/store.png" />
+                                    <h:commandLink action="mostrarProdutos" value="#{msgs['produtos.produtos']}" styleClass="hiperlink" />
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich">
+                                    <h:graphicImage id="imageAddProdutos" height="40" value="../images/plus.png" />
+                                    <h:commandLink action="#{produtoBean.novoProduto}" value="#{msgs['produtos.cadastrarProduto']}" styleClass="hiperlink" />
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich">
+                                    <h:graphicImage id="imageCliente" height="40" value="../images/usuario.png" />
+                                    <h:commandLink action="mostrarCliente" value="#{msgs['cliente.paginaCliente']}" styleClass="hiperlink" />
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich">
+                                    <h:graphicImage id="imageAddCliente" height="40" value="../images/novousuario.png" />
+                                    <h:commandLink action="#{clienteBean.novoCliente}" value="#{msgs['cliente.novoCliente']}" styleClass="hiperlink" />
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich"
+                                             rendered="#{clienteBean.logado}">
+                                    <h:graphicImage id="imageLogout" height="40" value="../images/logout.png" />
+                                    <h:commandLink action="#{clienteBean.logout}" value="#{msgs['login.logout']}"
+                                                   styleClass="hiperlink" />
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" styleClass="tabelaRich"
+                                             rendered="#{!clienteBean.logado}" >
+                                    <h:graphicImage id="imageLogin" height="40" value="../images/login.png" />
+                                    <h:commandLink action="login"  value="#{msgs['login.login']}"
+                                                   styleClass="hiperlink" />
+                                </h:panelGrid>
+                            </h:panelGrid>
+                        </h:form>
+
+                        <h:panelGrid columns="1" columnClasses="alignLeft" style="vertical-align: top">
+                            <h:form id="menuForm2">
+                                <h:panelGrid rowClasses="rowRoxo" columns="2" styleClass="tabelaRich800"
+                                             columnClasses="alignLeft, alignRight" >
+                                    <h:panelGrid columns="2" width="290" columnClasses="alignLeft, alignLeft" >
+                                        <h:outputText value="#{msgs['header.escolhaIdioma']}" styleClass="titulosTabelas" />
+
+                                        <p:selectOneMenu value="#{localeBean.locale}"
+                                                         valueChangeListener="#{localeBean.changeLocale}"
+                                                         onchange="this.form.submit()">
+                                            <f:selectItems value="#{localeBean.localeList}" />
+                                        </p:selectOneMenu>
+
+                                    </h:panelGrid>
+
+                                    <h:commandLink action="#{clienteBean.logout}" value="#{msgs['login.logout']}"
+                                                   rendered="#{clienteBean.logado}" styleClass="hiperlink" />
+                                </h:panelGrid>
+                            </h:form>
+                            <ui:insert name="body" />
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:panel>
+            </div>
+        </h:body>
+    </f:view>
+</html>

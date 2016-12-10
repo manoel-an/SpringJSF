@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : mostraProdutos
+    Created on : 30 mai 2014, 10:07:44
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template.xhtml">
+        
+        <ui:define name="body">
+            <h:form id="form"> <!--prependId="false">-->
+                <div align="left">
+                    <p:panel id="panel11" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 795px" >
+                        <p:dataTable resizableColumns="true" id="dataTable" var="prod" value="#{produtoBean.todosProdutos1}"
+                                     paginator="true" rows="20" style="width: 775px;"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} 
+                                     {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10,20,30" >
+
+                            <f:facet name="header" class="rowRoxo">
+                                    <h:outputText value="#{msgs['produtos.produtosDisponiveis']}" style="font-size: 16px;
+                                                  color: black" />
+                            </f:facet>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['produtos.codigoAtualizar']}" styleClass="labelsBold" />
+                                </f:facet>
+                                <h:commandLink action="#{produtoBean.editarProduto}" value="#{prod.codigo}" styleClass="hiperlink" >
+                                    <f:setPropertyActionListener value="#{prod}" target="#{produtoBean.produto}" /> 
+                                </h:commandLink>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['produtos.nome']}" styleClass="labelsBold" />
+                                </f:facet>
+                                <h:outputText value="#{prod.nome}" styleClass="labels" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['produtos.descricao']}" styleClass="labelsBold" />
+                                </f:facet>
+                                <h:outputText value="#{prod.descricao}" styleClass="labels" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['produtos.preco']}" styleClass="labelsBold" />
+                                </f:facet>
+                                <h:outputText value="#{prod.preco}" styleClass="labels" />
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['produtos.excluirProduto']}" styleClass="labelsBold" />
+                                </f:facet>
+
+                                <p:commandLink value="#{msgs['system.excluir']}"
+                                               styleClass="hiperlink" onclick="confirmation.show()">
+                                    <f:setPropertyActionListener value="#{prod}" target="#{produtoBean.produto}" />
+                                </p:commandLink>
+                                <p:confirmDialog id="confirmDialog" message="#{msgs['produtos.confirmaExclusao']}"  
+                                                 header="#{msgs['produtos.excluirProdutoPergunta']} " severity="alert" 
+                                                 widgetVar="confirmation">
+                                    <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="confirmation.hide()"  
+                                                     action="#{produtoBean.excluirProduto}" ajax="false" />
+                                    <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="confirmation.hide()" 
+                                                     type="button" />   
+                                </p:confirmDialog>
+                            </p:column>
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:panelGrid columns="2" id="gridChart">
+                                        <h:graphicImage id="imageChart1" height="35" value="../images/chart.png" 
+                                                        rendered="#{carrinhoBean.vazio}"/>
+                                        <h:commandLink action="carrinho" styleClass="hiperlink" 
+                                                       rendered="#{!carrinhoBean.vazio}"> 
+                                            <h:graphicImage id="imageChart2" height="35" value="../images/chartfull.png" />
+                                        </h:commandLink>
+                                    </h:panelGrid>                                
+                                </f:facet>
+                                <p:commandLink action="#{carrinhoBean.addProduto}" 
+                                               value="+ " styleClass="hiperlink" ajax="false">
+                                    <f:setPropertyActionListener value="#{prod}" target="#{carrinhoBean.produto}" /> 
+                                </p:commandLink>
+                                <h:outputLabel value="(#{carrinhoBean.getItens(prod)})" id="qtd" styleClass="hiperlink" />
+                                <p:commandLink action="#{carrinhoBean.remProduto}" 
+                                               value=" -" styleClass="hiperlink" ajax="false" >
+                                    <f:setPropertyActionListener value="#{prod}" target="#{carrinhoBean.produto}" /> 
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable> 
+
+                    </p:panel>
+
+                    <br/>
+                    <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" width="800">
+                        <h:graphicImage id="imageAcesso" height="35" value="../images/plus.png" />
+                        <h:commandLink action="#{produtoBean.novoProduto}" value="#{msgs['produtos.cadastrarProduto']}" styleClass="hiperlink" />
+                    </h:panelGrid>
+
+                </div>
+            </h:form>
+            <h:messages />
+        </ui:define>
+    </ui:composition>
+</html>

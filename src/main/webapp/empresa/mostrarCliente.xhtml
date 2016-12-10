@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : mostrarCliente
+    Created on : 30 mai 2014, 11:14:24
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="body">
+            
+            <h:form rendered="#{clienteBean.logado}" id="form">
+
+                <div align="center">
+
+                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 525px">
+
+                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich500">
+                            <h:graphicImage id="imageAcesso" height="25" value="../images/usuario.png" />
+                            <h:outputText value="#{msgs['cliente.dadosCliente']}" styleClass="titulosTabelas"/>
+                        </h:panelGrid>
+
+                        <br/>
+                
+                        <h:panelGrid columns="2" style="width: 500px" columnClasses="alignRight, alignLeft" >
+                            <h:outputText value="#{msgs['cliente.modificacaoCadastro']}: " styleClass="labelsBold" />
+                            <h:panelGrid columns="2" >
+                                <h:commandLink action="#{clienteBean.editarCliente}" value="#{msgs['cliente.cliqueAtualizar']}"
+                                        styleClass="hiperlink"/>
+                                <h:graphicImage id="imageAtualizasao" height="30" value="../images/update.png" />
+                            </h:panelGrid>
+
+                            <h:outputText value="#{msgs['cliente.nome']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.nome}" styleClass="labels"/>
+
+                            <h:outputText value="#{msgs['cliente.telefoneFixo']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.telefoneFixo}" styleClass="labels"/>
+
+                            <h:outputText value="#{msgs['cliente.telefoneCelular']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.telefoneCelular}" styleClass="labels"/>
+
+                            <h:outputText value="#{msgs['cliente.cpf']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.cpf}" styleClass="labels"/>
+
+                            <h:outputText value="#{msgs['cliente.sexo']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.sexo}" styleClass="labels"/>
+
+                            <h:outputText value="#{msgs['cliente.dataNascimento']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.dataNascimento}" styleClass="labels">
+                                <f:convertDateTime type="date" dateStyle="short"/>
+                            </h:outputText>
+
+                            <h:outputText value="#{msgs['login.usuario']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.usuario}" styleClass="labels"/>
+
+                            <h:outputText value="#{msgs['cliente.exclusaoCadastro']}: " styleClass="labelsBold" />
+                            <h:panelGrid columns="2" >
+                                <p:commandLink value="#{msgs['cliente.cliqueExcluir']}"
+                                        styleClass="hiperlink" onclick="confirmation.show()" >
+                                    <f:setPropertyActionListener value="#{clienteBean.cliente}" target="#{clienteBean.cliente}" />
+                                </p:commandLink>
+                                <h:graphicImage id="imageExclusao" height="30" value="../images/excluir.png" />
+                                <p:confirmDialog id="confirmDialog" message="#{msgs['cliente.confirmaExclusao']}"  
+                                                 header="#{msgs['cliente.excluirClientePergunta']} " severity="alert" 
+                                                 widgetVar="confirmation">
+                                    <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="confirmation.hide()"  
+                                                     action="#{clienteBean.excluirCliente}" ajax="false" />
+                                    <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="confirmation.hide()" 
+                                                     type="button" />   
+                                </p:confirmDialog>
+                                
+                                
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:panel>
+                    
+<br/>
+
+                    <p:panel id="panel2" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 780px">
+                        
+                        <h:dataTable value="#{clienteBean.enderecos}" var="item"
+                                     style="width: 750px" rowClasses="">
+                            <f:facet name="header">
+                                <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width: 750px; height: 25px">
+                                    <h:outputText value="#{msgs['cliente.listaEnderecos']}" styleClass="titulosTabelas" />
+                                </h:panelGrid>
+                            </f:facet>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['endereco.atualizarEndereco']}" styleClass="titulosPretos" />
+                                </f:facet>
+                                <h:commandLink action="#{clienteBean.editarEndereco}" value="#{msgs['system.atualizar']}" styleClass="hiperlink"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['endereco.rua']}" styleClass="titulosPretos" />
+                                </f:facet>
+                                <h:outputText value="#{item.rua}" styleClass="labels" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['endereco.setor']}" styleClass="titulosPretos" />
+                                </f:facet>
+                                <h:outputText value="#{item.setor}" styleClass="labels" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['endereco.cidade']}" styleClass="titulosPretos" />
+                                </f:facet>
+                                <h:outputText value="#{item.cidade}" styleClass="labels" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['endereco.estado']}" styleClass="titulosPretos" />
+                                </f:facet>
+                                <h:outputText value="#{item.estado}" styleClass="labels" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['endereco.excluirEndereco']}" styleClass="titulosPretos" />
+                                </f:facet>
+                                <h:commandLink action="#{clienteBean.excluirEndereco}" value="#{msgs['system.excluir']}" styleClass="hiperlink"/>
+                            </h:column>
+                        </h:dataTable>
+                        
+                    </p:panel>
+                    
+                </div>
+            </h:form>
+            
+            <h:form rendered="${!clienteBean.logado}">
+                <script type="text/javascript">document.location.href='login.xhtml'</script>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>

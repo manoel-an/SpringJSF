@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : login
+    Created on : 30 mai 2014, 10:39:31
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="body">
+
+            <h:form id="login">
+                <div align="center">
+                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 525px">
+
+                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich500">
+                            <h:graphicImage id="imageAcesso" height="25" value="../images/login.png" />
+                            <h:outputText value="#{msgs['login.titulo']}" styleClass="titulosTabelas" />
+                        </h:panelGrid>
+
+                        <br/>
+
+                        <p:messages id="msgs"/>
+
+                        <h:panelGrid columns="3">
+
+                            <h:outputLabel for="usuario" value="#{msgs['login.usuario']}:" styleClass="labels"/>
+                            <p:inputText id="usuario" value="#{clienteBean.cliente.usuario}" required="true" 
+                                         requiredMessage="#{msgs['login.usuarioRequired']}"
+                                         validatorMessage="#{msgs['login.usuarioErrado']}">
+                                <f:validateLength minimum="5" maximum="25" for="usuario"/>
+                            </p:inputText>
+                            <p:message for="usuario" display="icon"/>  
+
+                            <h:outputLabel styleClass="labels" for="senha" value="#{msgs['login.senha']}" />
+                            <p:password value="#{clienteBean.cliente.senha}" id="senha" required="true"
+                                         requiredMessage="#{msgs['login.senhaRequired']}"
+                                         validatorMessage="#{msgs['login.senhaErrada']}">
+                                <f:validateLength minimum="5" maximum="25" for="senha"></f:validateLength>
+                            </p:password>
+                            <p:message for="senha" display="icon"/>
+
+                        </h:panelGrid>
+
+                        <br/>
+
+                        <p:commandButton action="#{clienteBean.autenticaCliente}" value="#{msgs['login.entrar']}"
+                                         update="panel1" ajax="false" />
+
+                    </p:panel>
+                </div>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

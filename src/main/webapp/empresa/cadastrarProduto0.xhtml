@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : cadastrarProduto
+    Created on : 30 mai 2014, 11:17:59
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="body">
+            <h:form id="cadastramentoProduto">
+                <br/><br/>
+                <div align="center">
+                    <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich500">
+                        <h:outputText value="#{msgs['produtos.titulo']}" styleClass="titulosTabelas"
+                                      style="line-height: 20px"/>
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="1" styleClass="tabelaRich500" columnClasses="alignCenter" >
+                        <h:panelGrid columns="2" styleClass="tabelaRich500" columnClasses="col166Right, col250Left" >
+                            <h:outputLabel for="codigo" styleClass="labels" value="#{msgs['produtos.codigo']}: " />
+                            <p:inputText id="codigo" value="#{produtoBeam.produto.codigo}" required="true" 
+                                         label="#{msgs['produtos.codigo']}" validator="#{produtoBean.validaCodigo}"
+                                         requiredMessage="#{msgs['produtos.codigoRequired']}" />
+
+                        </h:panelGrid>
+                        <p:message for="codigo" class="errorMessage"/>
+
+                        <h:panelGrid columns="2" styleClass="tabelaRich500" columnClasses="col166Right, col250Left" >
+                            <h:outputText styleClass="labels" value="#{msgs['produtos.nome']}:" />
+                            <p:inputText id="nome" value="#{produtoBean.produto.nome}" required="true"
+                                         validator="#{produtoBean.validaNome}"
+                                         requiredMessage="#{msgs['produtos.nomeRequired']}" />
+                        </h:panelGrid>
+                        <p:message for="nome" class="errorMessage"/>
+
+                        <h:panelGrid columns="2" styleClass="tabelaRich500" columnClasses="col166Right, col250Left" >
+                            <h:outputText styleClass="labels" value="#{msgs['produtos.descricao']}:" />
+                            <p:inputText id="descricao" value="#{produtoBean.produto.descricao}" required="true"
+                                         validator="#{produtoBean.validaDescricao}"
+                                         requiredMessage="#{msgs['produtos.descricaoRequired']}" >
+                            </p:inputText>
+                        </h:panelGrid>
+                        <p:message for="descricao" class="errorMessage"/>
+
+                        <h:panelGrid columns="2" styleClass="tabelaRich500" columnClasses="col166Right, col250Left" >
+                            <h:outputText styleClass="labels" value="#{msgs['produtos.preco']}:" />
+                            <p:inputText id="preco" value="#{produtoBean.produto.preco}" required="true"
+                                         validator="#{produtoBean.validaPreco}"
+                                         requiredMessage="#{msgs['produtos.precoRequired']}"/>
+                        </h:panelGrid>
+                        <p:message for="preco" class="errorMessage"/>
+
+                    </h:panelGrid>
+                    <p:messages id="msgs"/>  
+                    <br/>
+                    <p:commandButton value="#{msgs['system.salvar']}" action="#{produtoBean.incluirProduto}" />
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

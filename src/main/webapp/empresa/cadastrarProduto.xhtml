@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : cadastrarProduto
+    Created on : 30 mai 2014, 11:17:59
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="template.xhtml">
+ 
+        <ui:define name="body">
+
+
+            <h:form id="form">
+                <div align="center">
+                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 525px">
+
+                        <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich500">
+                            <h:outputText value="#{msgs['produtos.titulo']}" styleClass="titulosTabelas"
+                                          style="line-height: 25px"/>
+                        </h:panelGrid>
+
+                        <br/>
+
+                        <p:messages id="msgs"/>
+
+                        <h:panelGrid columns="3">
+
+                            <h:outputLabel styleClass="labels" for="cod" value="#{msgs['produtos.codigo']}" />  
+                            <p:inputText id="cod" value="#{produtoBean.produto.codigo}" required="true" 
+                                         requiredMessage="#{msgs['produtos.codigoRequired']}"
+                                         validatorMessage="#{msgs['produtos.codigoErrado']}"
+                                         converterMessage="#{msgs['produtos.codigoErrado']}" >
+                                <f:validateLength minimum="2" maximum="4" for="cod"/>
+                            </p:inputText>
+                            <p:message for="cod" display="icon"/>  
+
+                            <h:outputLabel styleClass="labels" for="nome" value="#{msgs['produtos.nome']}" />
+                            <p:inputText value="#{produtoBean.produto.nome}" id="nome" required="true"
+                                         requiredMessage="#{msgs['produtos.nomeRequired']}"
+                                         validatorMessage="#{msgs['produtos.nomeErrado']}">
+                                <!--e possivel adicionar validadores via metodos de beans gerenciados:
+                                ex: validator="# {produtoBean.validaNome}"-->
+                                
+                                <f:validateLength minimum="5" for="nome"></f:validateLength>
+                            </p:inputText>
+                            <p:message for="nome" display="icon"/>
+                            
+                            <h:outputText styleClass="labels" value="#{msgs['produtos.descricao']}:" />
+                            <p:inputText id="descricao" value="#{produtoBean.produto.descricao}" required="true"
+                                         requiredMessage="#{msgs['produtos.descricaoRequired']}" 
+                                         validatorMessage="#{msgs['produtos.descricaoErrada']}">
+                                <f:validateLength minimum="6" for="descricao"></f:validateLength>
+                            </p:inputText>
+                            <p:message for="descricao" display="icon"/>
+
+                            <h:outputText styleClass="labels" value="#{msgs['produtos.preco']}:" />
+                            <p:inputText id="preco" value="#{produtoBean.produto.preco}" required="true"
+                                         requiredMessage="#{msgs['produtos.precoRequired']}"
+                                         validatorMessage="#{msgs['produtos.precoErrado']}" 
+                                         converterMessage="#{msgs['produtos.precoErrado']}" >
+                                <f:validateDoubleRange minimum="10.00" maximum="9999.99" for="preco" />
+                            </p:inputText>
+                            <p:message for="preco" display="icon"/>
+
+                        </h:panelGrid>
+
+                        <br/>
+
+                        <p:commandButton value="#{msgs['system.salvar']}" action="#{produtoBean.incluirProduto}" 
+                                         update="panel1" ajax="false"/>
+
+                    </p:panel>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

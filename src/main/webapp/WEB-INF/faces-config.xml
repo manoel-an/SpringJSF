@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+    <application>
+        <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+<!--        
+Primeiro e delegado ao 'business context' WebApplicationContext tentar "resolver" os beans
+e somente depois ao resolver(resolver em inglês, nao o verbo em portugues) padrao da 
+implementacao JSF debaixo.
+-->
+<!--        <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+            Se for habilitado, o primefaces nao funciona
+-->
+<!-- O elemento view-handler diz ao Facelets para fazer o tratamento das views, 
+em vez do view-handler default do JSF -->
+
+        <resource-bundle>
+            <base-name>messages.messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+        <locale-config>
+            <default-locale>fr</default-locale>
+            <supported-locale>en</supported-locale>
+            <supported-locale>pt</supported-locale>
+        </locale-config>
+    </application>
+
+<!--Nao sao precisos os beans gerenciados aqui porque eles sao declarados ou 
+referenciados (para serem escaneados) em application-context.xml - o Spring 
+identifica os beans.
+    <managed-bean>
+        <managed-bean-name>localeBean</managed-bean-name>
+        <managed-bean-class>view.LocaleBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+    <managed-bean>
+        <managed-bean-name>produtoBean</managed-bean-name>
+        <managed-bean-class>view.ProdutoBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+     <managed-bean>
+        <managed-bean-name>clienteBean</managed-bean-name>
+        <managed-bean-class>view.ClienteBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+-->
+</faces-config>

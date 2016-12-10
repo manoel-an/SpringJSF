@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : empresa
+    Created on : 30 mai 2014, 09:37:40
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="body">
+            <h:form>
+                <div align="center">
+                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 525px">
+                        <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich500" >
+                            <h:outputText value="#{msgs['principal.titulo']}" styleClass="titulos" style="line-height: 25px" />
+                        </h:panelGrid>
+                        <h:panelGrid columns="2" columnClasses="alignCenter, alignRight"
+                                     width="500" style="vertical-align: top">
+                            <h:panelGrid columns="1" columnClasses="alignCenter" width="250">
+                                <h:graphicImage id="imageProdutos1" height="75" value="../images/store.png" />
+                                <h:commandLink action="mostrarProdutos" value="#{msgs['produtos.produtos']}" styleClass="hiperlink" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" columnClasses="alignCenter" width="250">
+                                <h:graphicImage id="imageCliente" height="75" value="../images/usuario.png" />
+                                <h:commandLink action="mostrarCliente" value="#{msgs['cliente.paginaCliente']}" styleClass="hiperlink" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" columnClasses="alignCenter" width="250">
+                                <h:graphicImage id="imageAddProdutos1" height="75" value="../images/plus.png" />
+                                <h:commandLink action="#{produtoBean.novoProduto}" value="#{msgs['produtos.cadastrarProduto']}" styleClass="hiperlink" />
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" columnClasses="alignCenter" width="250">
+                                <h:graphicImage id="imageAddCliente" height="75" value="../images/novousuario.png" />
+                                <h:commandLink action="#{clienteBean.novoCliente}" value="#{msgs['cliente.novoCliente']}" styleClass="hiperlink" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </p:panel>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

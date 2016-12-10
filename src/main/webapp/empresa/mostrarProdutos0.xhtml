@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : mostraProdutos
+    Created on : 30 mai 2014, 10:07:44
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="template.xhtml">
+
+        <ui:define name="body">
+            <h:form id="formProdutos">
+                <div align="left">
+                    <br/><br/>
+                    <h:dataTable value="#{produtoBean.todosProdutos}" var="item" styleClass="tabelaRich800"
+                                 columnClasses="alignCenter, alignLeft, alignLeft, alignLeft, alignCenter" >
+                        <f:facet name="header">
+                            <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich800">
+                                <h:outputText value="#{msgs['produtos.produtosDisponiveis']}" styleClass="titulosTabelas"
+                                              style="line-height: 25px"/>
+                            </h:panelGrid>
+                        </f:facet>                       
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['produtos.codigoAtualizar']}" styleClass="labelsBold" />
+                            </f:facet>
+                            <h:commandLink action="#{produtoBean.editarProduto}" value="#{item.codigo}" styleClass="hiperlink"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['produtos.nome']}" styleClass="labelsBold" />
+                            </f:facet>
+                            <h:outputText value="#{item.nome}" styleClass="labels" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['produtos.descricao']}" styleClass="labelsBold" />
+                            </f:facet>
+                            <h:outputText value="#{item.descricao}" styleClass="labels" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['produtos.preco']}" styleClass="labelsBold" />
+                            </f:facet>
+                            <h:outputText value="#{item.preco}" styleClass="labels" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['produtos.excluirProduto']}" styleClass="labelsBold" />
+                            </f:facet>
+                            <p:commandLink value="#{msgs['system.excluir']}"
+                                           styleClass="hiperlink" onclick="confirmation.show()" />
+                            <p:confirmDialog id="confirmDialog" message="#{msgs['produtos.confirmaExclusao']}"  
+                                             header="#{msgs['produtos.excluirProdutoPergunta']} " severity="alert" 
+                                             widgetVar="confirmation">  
+                                <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="confirmation.hide()"  
+                                                 action="#{produtoBean.excluirProduto(item)}" ajax="false" />  
+                                <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="confirmation.hide()" type="button" />   
+                            </p:confirmDialog>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:panelGrid columns="2">
+                                    <h:graphicImage id="imageChart1" height="35" value="../images/chart.png" 
+                                                    rendered="#{carrinhoBean.vazio}"/>
+                                    <h:commandLink action="carrinho" styleClass="hiperlink" rendered="#{!carrinhoBean.vazio}"> 
+                                        <h:graphicImage id="imageChart2" height="35" value="../images/chartfull.png" />
+                                    </h:commandLink>
+                                </h:panelGrid>                                
+                            </f:facet>
+                            <h:commandLink actionListener="#{carrinhoBean.addProduto(item)}" 
+                                           value="+ " styleClass="hiperlink" />
+                            <h:outputLabel value="(#{carrinhoBean.getItens(item)})" id="qtd" styleClass="hiperlink" />
+                            <h:commandLink actionListener="#{carrinhoBean.remProduto(item)}" 
+                                           value=" -" styleClass="hiperlink" />
+                        </h:column>
+                    </h:dataTable>
+                    <br/>
+                    <h:panelGrid columns="2" columnClasses="col30Left,alignLeft" width="800">
+                        <h:graphicImage id="imageAcesso" height="35" value="../images/plus.png" />
+                        <h:commandLink action="#{produtoBean.novoProduto}" value="#{msgs['produtos.cadastrarProduto']}" styleClass="hiperlink" />
+                    </h:panelGrid>
+
+
+
+
+                </div>
+            </h:form>
+            <h:messages />
+        </ui:define>
+    </ui:composition>
+</html>

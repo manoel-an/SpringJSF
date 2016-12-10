@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Document   : mostrarCliente
+    Created on : 30 mai 2014, 12:12:00
+    Author     : vinicius
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="template.xhtml">
+        
+        <ui:define name="body">
+            
+            <h:form id="form">
+                <div align="center">
+                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+                             border: 1px solid blueviolet; width: 525px">
+
+                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich500">
+                            <h:graphicImage id="imageAcesso" height="25" value="../images/usuario.png" />
+                            <h:outputText value="#{msgs['cliente.atualizacaoDados']}" styleClass="titulosTabelas" />
+                        </h:panelGrid>
+
+                        <br/>
+
+                        <p:messages id="msgs"/>
+
+                        <h:panelGrid columns="3">
+                            
+                            
+                            <h:outputText value="#{msgs['cliente.nome']}: " styleClass="labels" />
+                            <p:inputText id="nome" value="#{clienteBean.cliente.nome}" 
+                                         required="true" 
+                                         requiredMessage="#{msgs['cliente.nomeRequired']}"
+                                         validatorMessage="#{msgs['cliente.nomeErrado']}">
+                                <f:validateLength minimum="3" maximum="25" for="nome"/>
+                            </p:inputText>
+                            <p:message for="nome" display="icon"/>  
+                            
+                            <h:outputText value="#{msgs['cliente.telefoneFixo']}: " styleClass="labels" />
+                            <p:inputMask id="telefoneFixo" value="#{clienteBean.cliente.telefoneFixo}" 
+                                         mask="(99) 9999-9999" required="true"
+                                         requiredMessage="#{msgs['cliente.fixoRequired']}" >
+                                <f:validateLength minimum="14" maximum="14" for="telefoneFixo"/>
+                            </p:inputMask>
+                            <p:message for="telefoneFixo" display="icon"/>  
+                            
+                            <h:outputText value="#{msgs['cliente.telefoneCelular']}: " styleClass="labels" />
+                            <p:inputMask id="telefoneCelular" value="#{clienteBean.cliente.telefoneCelular}" 
+                                         mask="(99) 9999-9999" required="true"
+                                         requiredMessage="#{msgs['cliente.celularRequired']}" >
+                                <f:validateLength minimum="14" maximum="14" for="telefoneCelular"/>
+                            </p:inputMask>
+                            <p:message for="telefoneCelular" display="icon"/>  
+                            
+                            <h:outputText value="#{msgs['cliente.cpf']}: " styleClass="labels" />
+                            <p:inputMask value="#{clienteBean.cliente.cpfs}" mask="999.999.999-99" readonly="true"/>
+                            <h:outputText value=" " />
+                            
+                            <h:outputText value="#{msgs['cliente.sexo']}: " styleClass="labels" />
+                            <p:selectOneRadio id="sexoB" value="#{clienteBean.sexoB}" styleClass="radioItem" 
+                                              required="true"
+                                              requiredMessage="#{msgs['cliente.sexoRequired']}">
+                                <f:selectItem itemLabel="#{msgs['cliente.sexoMasculino']}  " itemValue="true" />
+                                <f:selectItem itemLabel="#{msgs['cliente.sexoFeminino']}  " itemValue="false" />
+                            </p:selectOneRadio>
+                            <p:message for="sexoB" display="icon"/>  
+                            
+                            <h:outputText value="#{msgs['cliente.dataNascimento']}: " styleClass="labels" />
+                            <p:calendar value="#{clienteBean.cliente.dataNascimento}" id="popupCalendar" 
+                                        pattern="dd/MM/yyyy" navigator="true" effect="fadeIn" required="true"
+                                        requiredMessage="#{msgs['cliente.nascimentoRequired']}" />
+                            <p:message for="popupCalendar" display="icon"/>  
+
+                            <h:outputText value="#{msgs['login.usuario']}: " styleClass="labels" />
+                            <p:inputText id="usuario" value="#{clienteBean.cliente.usuario}" required="true" 
+                                         requiredMessage="#{msgs['login.usuarioRequired']}"
+                                         validatorMessage="#{msgs['login.usuarioErrado']}" >
+                                <f:validateLength minimum="5" maximum="25" for="usuario"/>
+                            </p:inputText>
+                            <p:message for="usuario" display="icon"/>  
+
+                            <h:outputText value="#{msgs['cliente.senha']}: " styleClass="labels" />
+                            <p:password value="#{clienteBean.cliente.senha}" id="senha" required="true"
+                                         requiredMessage="#{msgs['login.senhaRequired']}"
+                                         validatorMessage="#{msgs['login.senhaErrada']}">
+                                <f:validateLength minimum="5" maximum="25" for="senha"></f:validateLength>
+                            </p:password>
+                            <p:message for="senha" display="icon"/>  
+
+                        </h:panelGrid>
+                        
+                        <br/>
+
+                        <p:commandButton value="#{msgs['system.atualizar']}" action="#{clienteBean.atualizarCliente}" 
+                                         update="panel1" ajax="false"/>
+
+                    </p:panel>
+
+                </div>
+            </h:form>
+
+            <h:form rendered="${!clienteBean.logado}">
+                <script type="text/javascript">document.location.href='login.xhtml';</script>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+</html>
