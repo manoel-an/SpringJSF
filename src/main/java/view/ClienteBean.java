@@ -6,11 +6,13 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import javax.faces.model.SelectItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,6 +40,40 @@ public class ClienteBean {
 
 	@Autowired
 	private EnderecoDAO enderecoDAO;
+
+	private static final List<SelectItem> UFs;
+
+	static {
+		UFs = new ArrayList<SelectItem>(27);
+		UFs.add(new SelectItem("Acre", "AC"));
+		UFs.add(new SelectItem("Alagoas", "AL"));
+		UFs.add(new SelectItem("Amapá", "AP"));
+		UFs.add(new SelectItem("Amazonas", "AM"));
+		UFs.add(new SelectItem("Bahia", "BA"));
+		UFs.add(new SelectItem("Ceará", "CE"));
+		UFs.add(new SelectItem("Distrito Federal", "DF"));
+		UFs.add(new SelectItem("Espírito Santo", "ES"));
+		UFs.add(new SelectItem("Goiás", "GO"));
+		UFs.add(new SelectItem("Maranhão", "MA"));
+		UFs.add(new SelectItem("Mato Grosso", "MT"));
+		UFs.add(new SelectItem("Mato Grosso do Sul", "MS"));
+		UFs.add(new SelectItem("Minas Gerais", "MG"));
+		UFs.add(new SelectItem("Pará", "PA"));
+		UFs.add(new SelectItem("Paraíba", "PB"));
+		UFs.add(new SelectItem("Paraná", "PR"));
+		UFs.add(new SelectItem("Pernambuco", "PE"));
+		UFs.add(new SelectItem("Piauí", "PI"));
+		UFs.add(new SelectItem("Rio de Janeiro", "RJ"));
+		UFs.add(new SelectItem("Rio Grande do Norte", "RN"));
+		UFs.add(new SelectItem("Rio Grande do Sul", "RS"));
+		UFs.add(new SelectItem("Rondônia", "RO"));
+		UFs.add(new SelectItem("Roraima", "RR"));
+		UFs.add(new SelectItem("Santa Catarina", "SC"));
+		UFs.add(new SelectItem("São Paulo", "SP"));
+		UFs.add(new SelectItem("Sergipe", "SE"));
+		UFs.add(new SelectItem("Tocantins", "TO"));
+
+	}
 
 	/**
 	 * @return the sexoB
@@ -103,6 +139,9 @@ public class ClienteBean {
 	 * @return the endereco
 	 */
 	public Endereco getEndereco() {
+		if (endereco == null) {
+			endereco = new Endereco();
+		}
 		return endereco;
 	}
 
@@ -177,6 +216,11 @@ public class ClienteBean {
 		clienteDAO.atualizar(cliente);
 		// setCliente(clienteDAO.procurarCliente(cliente.getCpf()));
 		return "mostrarCliente";
+	}
+
+	public void atualizarEnderecoCliente() {
+		clienteDAO.atualizar(cliente);
+		// setCliente(clienteDAO.procurarCliente(cliente.getCpf()));
 	}
 
 	/**
@@ -255,13 +299,37 @@ public class ClienteBean {
 	 *         enderecos
 	 * @throws EmpresaDAOException
 	 */
-	public String excluirEndereco() {
+	public void excluirEndereco() {
 		getEnderecoManipulacao();
 		// enderecoDAO.excluir(this.endereco);
 		this.cliente.getEnderecos().remove(this.endereco);
 		this.endereco = null;
-		atualizarCliente();
-		return "mostrarCliente";
+		atualizarEnderecoCliente();
+	}
+
+	public void inicializaEnderecoEdicao() {
+		getEnderecoManipulacao();
+	}
+
+	public void adicionarEndereco() {
+		int indice = this.cliente.getEnderecos().indexOf(this.endereco);
+		if (!this.cliente.getEnderecos().isEmpty()) {
+			if (indice >= 0) {
+				this.cliente.getEnderecos().set(indice, this.endereco);
+				atualizarEnderecoCliente();
+				this.endereco = new Endereco();
+			} else {
+				this.endereco.setClienteId(cliente.getObjectID());
+				this.cliente.getEnderecos().add(this.endereco);
+				atualizarEnderecoCliente();
+				this.endereco = new Endereco();
+			}
+		} else {
+			this.endereco.setClienteId(cliente.getObjectID());
+			this.cliente.getEnderecos().add(this.endereco);
+			atualizarEnderecoCliente();
+			this.endereco = new Endereco();
+		}
 	}
 
 	/**
@@ -296,6 +364,10 @@ public class ClienteBean {
 		this.cliente.getEnderecos().add(this.endereco);
 		atualizarCliente();
 		return "mostrarCliente";
+	}
+
+	public List<SelectItem> getListaUFs() {
+		return UFs;
 	}
 
 }

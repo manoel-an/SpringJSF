@@ -95,12 +95,6 @@
                             </f:facet>
                             <h:column>
                                 <f:facet name="header">
-                                    <h:outputText value="#{msgs['endereco.atualizarEndereco']}" styleClass="titulosPretos" />
-                                </f:facet>
-                                <h:commandLink action="#{clienteBean.editarEndereco}" value="#{msgs['system.atualizar']}" styleClass="hiperlink"/>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
                                     <h:outputText value="#{msgs['endereco.rua']}" styleClass="titulosPretos" />
                                 </f:facet>
                                 <h:outputText value="#{item.rua}" styleClass="labels" />
@@ -122,12 +116,6 @@
                                     <h:outputText value="#{msgs['endereco.estado']}" styleClass="titulosPretos" />
                                 </f:facet>
                                 <h:outputText value="#{item.estado}" styleClass="labels" />
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs['endereco.excluirEndereco']}" styleClass="titulosPretos" />
-                                </f:facet>
-                                <h:commandLink action="#{clienteBean.excluirEndereco}" value="#{msgs['system.excluir']}" styleClass="hiperlink"/>
                             </h:column>
                         </h:dataTable>
                         

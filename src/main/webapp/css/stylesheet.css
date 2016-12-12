@@ -2,159 +2,159 @@
  * After modifying this style sheet, refresh the page being designed to see the effect of the modification.
  * Click the Refresh button in the Visual Designer toolbar to refresh the page.
  */
-
-.ui-widget,.ui-widget .ui-widget {
-        font-size: 80%;
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 80%;
 }
 
-.tabelaRich{
-	background-color:#CCCCFF;
-	text-align:left;
-	padding:10px;
-	margin:0px;
+.tabelaRich {
+	background-color: #CCCCFF;
+	text-align: left;
+	padding: 10px;
+	margin: 0px;
 }
 
-.tabelaRichAcessibilidade{
-	background-color:#CCCCFF;
-	text-align:left;
-	padding:0px;
-	margin:0px;
+.tabelaRichAcessibilidade {
+	background-color: #CCCCFF;
+	text-align: left;
+	padding: 0px;
+	margin: 0px;
 }
 
-.tabelaRich800{
-	background-color:#CCCCFF;
-	text-align:center;
-        width:800px;
-	padding:0px;
-	margin:0px;
-        border-width:0px;
-	border-spacing:0px;
-	border-style:outset;
+.tabelaRich800 {
+	background-color: #CCCCFF;
+	text-align: center;
+	width: 800px;
+	padding: 0px;
+	margin: 0px;
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: outset;
 }
 
-.tabelaRich500{
-	background-color:#CCCCFF;
-	text-align:center;
-        width:500px;
-	padding:0px;
-	margin:0px;
-        border-width:0px;
-	border-spacing:0px;
-	border-style:outset;
+.tabelaRich500 {
+	background-color: #CCCCFF;
+	text-align: center;
+	width: 500px;
+	padding: 0px;
+	margin: 0px;
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: outset;
 	border-top-color: #CCCCFF;
 	border-left-color: #CCCCFF;
 	border-right-color: #CCCCFF;
 	border-bottom-color: #CCCCFF;
 }
 
-.tabelaRich750{
-	background-color:#CCCCFF;
-	text-align:center;
-        width:750px;
-	padding:0px;
-	margin:0px;
-        border-width:0px;
-	border-spacing:0px;
-	border-style:outset;
+.tabelaRich750 {
+	background-color: #CCCCFF;
+	text-align: center;
+	width: 750px;
+	padding: 0px;
+	margin: 0px;
+	border-width: 0px;
+	border-spacing: 0px;
+	border-style: outset;
 	border-top-color: #CCCCFF;
 	border-left-color: #CCCCFF;
 	border-right-color: #CCCCFF;
 	border-bottom-color: #CCCCFF;
 }
 
-.tabela{
-	background-color:#CCCCFF;
-	border-collapse:separate;
-	border-width:2px;
-	border-spacing:2px;
-	border-style:outset;
+.tabela {
+	background-color: #CCCCFF;
+	border-collapse: separate;
+	border-width: 2px;
+	border-spacing: 2px;
+	border-style: outset;
 	border-top-color: #E8E8E8;
 	border-left-color: #E8E8E8;
 	border-right-color: #8888CC;
 	border-bottom-color: #8888CC;
-	text-align:left;
-	padding:5px;
+	text-align: left;
+	padding: 5px;
 }
 
-.alignRight{
-    text-align:right;
+.alignRight {
+	text-align: right;
 }
 
-.alignLeft{
-    text-align:left;
+.alignLeft {
+	text-align: left;
 }
 
-.alignCenter{
-    text-align:center;
+.alignCenter {
+	text-align: center;
 }
 
-.alignTop{
-    vertical-align: top;
+.alignTop {
+	vertical-align: top;
 }
 
 .col30Left {
-    width: 30px;
-    text-align:left;
+	width: 30px;
+	text-align: left;
 }
 
 .col250Left {
-    width: 250px;
-    text-align:left;
+	width: 250px;
+	text-align: left;
 }
 
 .col250Right {
-    width: 250px;
-    text-align:right;
+	width: 250px;
+	text-align: right;
 }
 
 .col250Center {
-    width: 250px;
-    text-align:center;
+	width: 250px;
+	text-align: center;
 }
 
 .col166Left {
-    width: 166px;
-    text-align:left;
+	width: 166px;
+	text-align: left;
 }
 
 .col166Right {
-    width: 166px;
-    text-align:right;
+	width: 166px;
+	text-align: right;
 }
 
 .col166Center {
-    width: 166px;
-    text-align:center;
+	width: 166px;
+	text-align: center;
 }
 
 .columnBlue {
-    background-color:#1E90FF;
+	background-color: #1E90FF;
 }
 
 .columnLilas {
-    background-color:#CCCCFF;
+	background-color: #CCCCFF;
 }
 
 .rowRoxo {
-    background-color:#333399
+	background-color: #333399
 }
 
 .textRoxo {
-    background-color:#333399;
-    font-family: Arial, Helvetica, sans-serif;
-    color:#333399;
-    font-size:14px;
-    font-weight: bold;
+	background-color: #333399;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #333399;
+	font-size: 14px;
+	font-weight: bold;
 }
 
-.labels{
+.labels {
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	margin-bottom: 5px;
 	margin-top: 5px;
 }
-.labelsBold{
+
+.labelsBold {
 	color: black;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
@@ -162,7 +162,8 @@
 	margin-bottom: 6px;
 	margin-top: 6px;
 }
-.labelsBranco{
+
+.labelsBranco {
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -186,7 +187,7 @@
 	cellspacing: 10px;
 }
 
-.titulosVerdes{
+.titulosVerdes {
 	color: #024E00;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
@@ -220,7 +221,7 @@
 	padding: 5px;
 }
 
-.inputText{
+.inputText {
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -229,9 +230,9 @@
 	margin-top: 4px;
 }
 
-.comboBox{
+.comboBox {
 	color: black;
-	background-color:#FDFDFD;
+	background-color: #FDFDFD;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	width: 100px;
@@ -239,9 +240,9 @@
 	margin-top: 4px;
 }
 
-.comboBoxComplemento{
+.comboBoxComplemento {
 	color: black;
-	background-color:#E1FFE1;
+	background-color: #E1FFE1;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	width: 100px;
@@ -249,8 +250,7 @@
 	margin-top: 4px;
 }
 
-
-	/* Style rules to make Java Server faces Standarad data tables look better */
+/* Style rules to make Java Server faces Standarad data tables look better */
 .list-header {
 	background-color: #eeeeee;
 	font-size: larger;
@@ -274,7 +274,6 @@
 }
 
 /* Style rules for message severity levels */
-
 .warnMessage {
 	color: orange;
 	font-family: Arial, Helvetica, sans-serif;
@@ -312,33 +311,34 @@
 	font-weight: bold;
 }
 
-.itensExpassadosTabela{
+.itensExpassadosTabela {
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	width: 80px;
-	text-align:center;
+	text-align: center;
 	margin-bottom: 5px;
 	margin-top: 5px;
-	padding:5px;
+	padding: 5px;
 }
 
-.tableItemAzul{
+.tableItemAzul {
 	color: blue;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	margin: 2px;
-	padding:0px;
+	padding: 0px;
 }
-.tableItem{
+
+.tableItem {
 	color: white;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	margin: 2px;
-	padding:0px;
+	padding: 0px;
 }
 
-.radioItem{
+.radioItem {
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -346,7 +346,7 @@
 	text-indent: 15px;
 }
 
-.inputTextLarge{
+.inputTextLarge {
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
@@ -355,50 +355,42 @@
 	margin-top: 4px;
 }
 
-.inputTextArgumentos{
+.inputTextArgumentos {
 	color: black;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	width: 450px;
 }
 
-.fontButtons{
+.fontButtons {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	width: 30px;
 	text-align: center;
 }
 
-.buttons{
+.buttons {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	margin: 5px;
 }
 
-.mensagensInformacao{
+.mensagensInformacao {
 	color: #4F4F4F;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 }
 
-.hiperlink{
+.hiperlink {
 	color: #1E90FF;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 14px;
 	text-decoration: none;
-        border-style: nome;
+	border-style: nome;
 }
 
-.hiperlink:hover{
-	color: #1E90FF;
-	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
-	text-decoration: none;
-}
-
-.hiperlink:active{
+.hiperlink:hover {
 	color: #1E90FF;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
@@ -406,7 +398,7 @@
 	text-decoration: none;
 }
 
-.hiperlink:visited{
+.hiperlink:active {
 	color: #1E90FF;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
@@ -414,38 +406,47 @@
 	text-decoration: none;
 }
 
-.radio{
-	background-color:#E8E8E8; 
-	padding:7px;
+.hiperlink:visited {
+	color: #1E90FF;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	text-decoration: none;
 }
 
-.menu{
-	border-color:#2E8B57;
+.radio {
+	background-color: #E8E8E8;
+	padding: 7px;
+}
+
+.menu {
+	border-color: #2E8B57;
 	background-color: #E8E8E8;
 	font-family: Arial, Helvetica, sans-serif;
 	font-color: black;
 	font-size: 14px;
-	border-width:1px; 
-	border-style:solid; 
+	border-width: 1px;
+	border-style: solid;
 	text-decoration: none;
 	margin: 0px;
 	padding: 0px;
-	float:left;
+	float: left;
 }
 
-.itemMenuAzul{
+.itemMenuAzul {
 	color: #0000AA;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	font-weight: bold;
-	margin-left:15px;
-	margin-right:15px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
-.itemMenu{
+
+.itemMenu {
 	color: #80FFFF;
 	font-family: Arial, Helvetica, sans-serif;
 	text-decoration: none;
 	font-weight: bold;
-	margin-left:15px;
-	margin-right:15px;
+	margin-left: 15px;
+	margin-right: 15px;
 }
