@@ -110,7 +110,7 @@
                     </p:panel>
                     
                     <p:panel id="listaEnderecos" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
-                             border: 1px solid blueviolet; width: 780px" rendered="#{not empty clienteBean.endereco}">
+                             border: 1px solid blueviolet; width: 780px" rendered="#{not empty clienteBean.enderecos}">
                         
                         <h:dataTable value="#{clienteBean.enderecos}" var="item"
                                      style="width: 750px" rowClasses="">
@@ -174,7 +174,7 @@
 						<div align="center">
 						    <p:messages id="msgsEndereco"/>
 		                    <p:panel id="panelEndereco" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
-		                             border: 1px solid blueviolet; width: 525px">
+		                             border: 1px solid blueviolet; width: 600px">
 		                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich500">
 		                            <h:graphicImage id="imageAcessoEndereco" height="25" value="../images/usuario.png" />
 		                            <h:outputText value="#{msgs['endereco.dadosEndereco']}" styleClass="titulosTabelas" />
