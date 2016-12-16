@@ -91,6 +91,15 @@
                             </p:password>
                             <p:message for="senha" display="icon"/>  
                             
+                            <h:outputText value="#{msgs['cliente.perfil']}: " styleClass="labels" />
+                            <p:selectOneRadio id="perfil" value="#{clienteBean.cliente.perfil}" styleClass="radioItem" 
+                                              required="true"
+                                              requiredMessage="#{msgs['cliente.perfilRequired']}">
+                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="#{clienteBean.perfil.Administrador}" />
+                                <f:selectItem itemLabel="#{msgs['cliente.Comum']}  " itemValue="false" />
+                            </p:selectOneRadio>
+                            <p:message for="perfil" display="icon"/>
+                            
                             <f:facet name="footer">
 	                            <p:toolbar>
 	                            	<f:facet name="right">

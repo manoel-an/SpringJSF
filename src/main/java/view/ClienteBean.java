@@ -6,8 +6,10 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
@@ -21,6 +23,7 @@ import dao.ClienteDAO;
 import dao.EnderecoDAO;
 import model.Cliente;
 import model.Endereco;
+import model.EnumPerfil;
 
 /**
  *
@@ -42,6 +45,8 @@ public class ClienteBean {
 	private EnderecoDAO enderecoDAO;
 
 	private static final List<SelectItem> UFs;
+	private List<EnumPerfil> perfis;
+	private EnumPerfil perfil;
 
 	static {
 		UFs = new ArrayList<SelectItem>(27);
@@ -73,6 +78,14 @@ public class ClienteBean {
 		UFs.add(new SelectItem("Sergipe", "SE"));
 		UFs.add(new SelectItem("Tocantins", "TO"));
 
+	}
+	
+	/**
+	 * @inicia a lista com os perfis assim que o bean for iniciado.
+	 */
+	@PostConstruct
+	public void init(){
+		this.perfis = Arrays.asList(EnumPerfil.values());
 	}
 
 	/**
@@ -117,6 +130,7 @@ public class ClienteBean {
 		cliente.setTelefoneCelular(cliente.getTelefoneCelular().trim());
 		cliente.setTelefoneFixo(cliente.getTelefoneFixo().trim());
 		cliente.setUsuario(cliente.getUsuario().trim());
+		cliente.setPerfil(cliente.getPerfil());
 		this.cliente = cliente;
 	}
 
@@ -188,7 +202,7 @@ public class ClienteBean {
 	 */
 	public String logout() {
 		setLogado(false);
-		Cliente c = new Cliente("", "", "", "", "", "", null, 0, null);
+		Cliente c = new Cliente("", "", "", "", "", "", null, 0, null, perfil);
 		setCliente(c);
 		return "empresa";
 	}
@@ -245,7 +259,7 @@ public class ClienteBean {
 	 *         cliente.
 	 */
 	public String novoCliente() {
-		Cliente c = new Cliente("", "", "", "", "", "", null, 0, new ArrayList<Endereco>());
+		Cliente c = new Cliente("", "", "", "", "", "", null, 0, new ArrayList<Endereco>(), perfil);
 		setCliente(c);
 		setLogado(false);
 		return "cadastrarCliente";
@@ -369,5 +383,23 @@ public class ClienteBean {
 	public List<SelectItem> getListaUFs() {
 		return UFs;
 	}
+
+	public List<EnumPerfil> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<EnumPerfil> perfis) {
+		this.perfis = perfis;
+	}
+
+	public EnumPerfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(EnumPerfil perfil) {
+		this.perfil = perfil;
+	}
+	
+	
 
 }

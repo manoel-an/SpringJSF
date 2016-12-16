@@ -63,6 +63,8 @@ public class Cliente extends BaseModel{
     @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Endereco> enderecos = new ArrayList<Endereco>();
     
+    private EnumPerfil perfil;
+    
     //Cpf do tipo string - para auxiliar a trabalhar com mascara.
     @Transient
     private String cpfs = "";
@@ -71,7 +73,7 @@ public class Cliente extends BaseModel{
     }
 
     public Cliente(String nome, String telefoneCelular, String telefoneFixo, String sexo,
-            String usuario, String senha, Date dataNascimento, int cpf, List<Endereco> enderecos){
+            String usuario, String senha, Date dataNascimento, int cpf, List<Endereco> enderecos, EnumPerfil perfil){
         this.nome = nome;
         this.telefoneCelular = telefoneCelular;
         this.telefoneFixo = telefoneFixo;
@@ -81,6 +83,7 @@ public class Cliente extends BaseModel{
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.enderecos = enderecos;
+        this.perfil = perfil;
     }
 
     /**
@@ -233,4 +236,13 @@ public class Cliente extends BaseModel{
         this.enderecos = enderecos;
     }
 
+	public EnumPerfil getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(EnumPerfil perfil) {
+		this.perfil = perfil;
+	}
+
+    
 }
