@@ -48,6 +48,8 @@ public class ClienteBean {
 	private List<EnumPerfil> perfis;
 	private EnumPerfil perfil;
 
+	private boolean erroEndereco;
+
 	static {
 		UFs = new ArrayList<SelectItem>(27);
 		UFs.add(new SelectItem("Acre", "AC"));
@@ -79,12 +81,12 @@ public class ClienteBean {
 		UFs.add(new SelectItem("Tocantins", "TO"));
 
 	}
-	
+
 	/**
 	 * @inicia a lista com os perfis assim que o bean for iniciado.
 	 */
 	@PostConstruct
-	public void init(){
+	public void init() {
 		this.perfis = Arrays.asList(EnumPerfil.values());
 	}
 
@@ -265,6 +267,12 @@ public class ClienteBean {
 		return "cadastrarCliente";
 	}
 
+	public void verificaListaEnderecosCliente() {
+		if (this.cliente.getEnderecos().isEmpty()) {
+			setErroEndereco(true);
+		}
+	}
+
 	/**
 	 * Metodo chamado para salvar os dados do novo cliente, informados no
 	 * formulario.
@@ -274,9 +282,18 @@ public class ClienteBean {
 	 * @throws EmpresaDAOException
 	 */
 	public String salvarCliente() {
-		clienteDAO.salvar(cliente);
-		setLogado(true);
-		return "mostrarCliente";
+		if (isErroEndereco()) {
+			FacesContext contexto = FacesContext.getCurrentInstance();
+			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+					FacesHelper.getMessage("cliente.enderecoVazio"), "");
+			contexto.addMessage(null, msg);
+			return "cadastrarCliente";
+		} else {
+			setErroEndereco(false);
+			clienteDAO.salvar(cliente);
+			setLogado(true);
+			return "mostrarCliente";
+		}
 	}
 
 	// METODOS PARA MANIPULACAO DE DADOS DO ENDERECO
@@ -325,7 +342,22 @@ public class ClienteBean {
 		getEnderecoManipulacao();
 	}
 
-	public void adicionarEndereco() {
+	public void adicionarEnderecoClienteNovo() {
+		this.cliente.getEnderecos().add(getEndereco());
+		this.endereco = new Endereco();
+	}
+
+	public void limpar() {
+		if (!this.cliente.getEnderecos().isEmpty()) {
+			this.cliente.getEnderecos().clear();
+		}
+	}
+
+	public void editarEnderecoClienteNovo() {
+		this.cliente.getEnderecos().remove(this.cliente.getEnderecos().indexOf(this.endereco));
+	}
+
+	public void adicionarEnderecoClienteExistente() {
 		int indice = this.cliente.getEnderecos().indexOf(this.endereco);
 		if (!this.cliente.getEnderecos().isEmpty()) {
 			if (indice >= 0) {
@@ -399,7 +431,13 @@ public class ClienteBean {
 	public void setPerfil(EnumPerfil perfil) {
 		this.perfil = perfil;
 	}
-	
-	
+
+	public boolean isErroEndereco() {
+		return erroEndereco;
+	}
+
+	public void setErroEndereco(boolean erroEndereco) {
+		this.erroEndereco = erroEndereco;
+	}
 
 }

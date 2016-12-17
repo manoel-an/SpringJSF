@@ -214,7 +214,7 @@
 		                            <f:facet name="footer">
 			                            <p:toolbar>
 			                            	<f:facet name="left">
-						                        <p:commandButton value="#{msgs['system.salvar']}" action="#{clienteBean.adicionarEndereco}" 
+						                        <p:commandButton value="#{msgs['system.salvar']}" action="#{clienteBean.adicionarEnderecoClienteExistente}" 
 						                        	process="@form" update="@form, :form" oncomplete="if(!args.validationFailed) { PF('addEndereco').hide();}"/>					                                         
 			                            	</f:facet>
 			                            	<f:facet name="right">

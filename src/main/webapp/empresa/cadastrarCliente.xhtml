@@ -11,191 +11,230 @@
       xmlns:p="http://primefaces.org/ui">
     
     <ui:composition template="template.xhtml">
-
         <ui:define name="body">
-            
-            <h:form id="form">
-                <div align="center">
-	                <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:810px;">">
-	                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
-	                             border: 1px solid blueviolet; width: 800px">
-	
-	                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:780px;">
-	                            <h:graphicImage id="imageAcesso" height="25" value="../images/novousuario.png" />
-	                            <h:outputText value="#{msgs['cliente.dadosNovoCliente']}" styleClass="titulosTabelas" />
-	                        </h:panelGrid>
-	
-			                 <p:panelGrid style="with: 100%; font-size: 16;">
-			                     <p:row style="border: white;">
-			                     	<p:column>
-			                     		<h:outputText value="#{msgs['cliente.nome']}: " styleClass="labels" />
-			                     	</p:column>
-			                     	<p:column>
-			                           <p:inputText id="nome" value="#{clienteBean.cliente.nome}" 
-			                                        required="true" size="30"
-			                                        requiredMessage="#{msgs['cliente.nomeRequired']}"
-			                                        validatorMessage="#{msgs['cliente.nomeErrado']}">
-			                               <f:validateLength minimum="3" maximum="25" for="nome"/>
-			                           </p:inputText>                     	
-			                     	</p:column>
-			                     	<p:column>
-			                     		<p:message for="nome" display="icon"/> 
-			                     	</p:column>
-			                     	<p:column>
-	 									<h:outputText value="#{msgs['cliente.telefoneFixo']}: " styleClass="labels" />
-			                     	</p:column>	
-			                     	<p:column>
-			                            <p:inputMask id="telefoneFixo" value="#{clienteBean.cliente.telefoneFixo}" 
-			                                         mask="(99) 9999-9999" required="true"
-			                                         requiredMessage="#{msgs['cliente.fixoRequired']}" >
-			                                <f:validateLength minimum="14" maximum="14" for="telefoneFixo"/>
-			                            </p:inputMask>
-			                     	</p:column>	
-			                     	<p:column>
-	                            		<p:message for="telefoneFixo" display="icon"/>  
-			                     	</p:column>			                     				                     		                     	                     
-			                     </p:row>
-			                     <p:row style="border: white;">
-			                     	<p:column>
-	   									<h:outputText value="#{msgs['cliente.telefoneCelular']}: " styleClass="labels" />
-			                     	</p:column>
-			                     	<p:column>
-			                            <p:inputMask id="telefoneCelular" value="#{clienteBean.cliente.telefoneCelular}" 
-			                                         mask="(99) 9999-9999" required="true"
-			                                         requiredMessage="#{msgs['cliente.celularRequired']}" >
-			                                <f:validateLength minimum="14" maximum="14" for="telefoneCelular"/>
-			                            </p:inputMask>                  	
-			                     	</p:column>
-			                     	<p:column>
-	 									<p:message for="telefoneCelular" display="icon"/>  
-			                     	</p:column>
-			                     	<p:column>
-										<h:outputText value="#{msgs['cliente.cpf']}: " styleClass="labels" />
-			                     	</p:column>	
-			                     	<p:column>
-			                            <p:inputMask id="cpf" value="#{clienteBean.cliente.cpfs}" mask="999.999.999-99" 
-			                                         required="true" requiredMessage="#{msgs['cliente.cpfRequired']}"> 
-			                                <f:validateLength minimum="14" maximum="14" for="cpf"/>
-			                            </p:inputMask>
-			                     	</p:column>	
-			                     	<p:column>
-	                            		<p:message for="cpf" display="icon"/> 
-			                     	</p:column>			                     				                     		                     	                     
-			                     </p:row>
-			                     <p:row style="border: white;">
-				                     <p:column>
-				                     	 <h:outputText value="#{msgs['cliente.sexo']}: " styleClass="labels" />
-				                     </p:column>
-				                     <p:column>
-			                            <p:selectOneRadio id="sexoB" value="#{clienteBean.sexoB}" styleClass="radioItem" 
-			                                              required="true"
-			                                              requiredMessage="#{msgs['cliente.sexoRequired']}">
-			                                <f:selectItem itemLabel="#{msgs['cliente.sexoMasculino']}  " itemValue="true" />
-			                                <f:selectItem itemLabel="#{msgs['cliente.sexoFeminino']}  " itemValue="false" />
-			                            </p:selectOneRadio>			                     
-				                     </p:column>
-				                     <p:column>
-				                      	<p:message for="sexoB" display="icon"/> 
-				                     </p:column>
-			                     	<p:column>
-			                     		<h:outputText value="#{msgs['cliente.dataNascimento']}: " styleClass="labels" />
-			                     	</p:column>
-			                     	<p:column>
-			                            <p:calendar value="#{clienteBean.cliente.dataNascimento}" id="popupCalendar" 
-			                                        pattern="dd/MM/yyyy" navigator="true" effect="fadeIn" required="true"
-			                                        requiredMessage="#{msgs['cliente.nascimentoRequired']}" />		                     	
-			                     	</p:column>
-			                     	<p:column>
-			                     	  	<p:message for="popupCalendar" display="icon"/> 
-			                     	</p:column>				                     
-			                     </p:row>
-			                      <p:row style="border: white;">
-			                     	<p:column>
-	 									<h:outputText value="#{msgs['login.usuario']}: " styleClass="labels" />
-			                     	</p:column>
-			                     	<p:column>
-			                            <p:inputText id="usuario" value="#{clienteBean.cliente.usuario}" required="true" 
-			                                         requiredMessage="#{msgs['login.usuarioRequired']}"
-			                                         validatorMessage="#{msgs['login.usuarioErrado']}" >
-			                                <f:validateLength minimum="5" maximum="25" for="usuario"/>
-			                            </p:inputText>		                     	
-			                     	</p:column>
-			                     	<p:column>
-	                            		<p:message for="usuario" display="icon"/> 
-			                     	</p:column>		
-			                     	<p:column>
-	 									<h:outputText value="#{msgs['cliente.senha']}: " styleClass="labels" />
-			                     	</p:column>
-			                     	<p:column>
-			                            <p:password value="#{clienteBean.cliente.senha}" id="senha" required="true"
-			                                         requiredMessage="#{msgs['login.senhaRequired']}"
-			                                         validatorMessage="#{msgs['login.senhaErrada']}">
-			                                <f:validateLength minimum="5" maximum="25" for="senha"></f:validateLength>
-			                            </p:password>	                     	
-			                     	</p:column>
-			                     	<p:column>
-	                            		<p:message for="senha" display="icon"/>  
-			                     	</p:column>		                     			                      
-			                      </p:row>		                     		                     
-	                 		</p:panelGrid> 
-	                 		                       
-	                        <p:growl id="msgs"/>
-	                        
-	                        <br/>
-	
-	                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:780px;">
-	                            <h:graphicImage id="imageAcessoEndereco" height="25" value="../images/novousuario.png" />
-	                            <h:outputText value="#{msgs['endereco.dadosEndereco']}" styleClass="titulosTabelas" />
-	                        </h:panelGrid>
-	
-							<h:panelGrid columns="2" style="width:100%;">
-								<h:outputText value="#{msgs['endereco.rua']}: " styleClass="labels" />
-								<h:panelGroup>
-			                        <p:inputText id="rua" value="#{clienteBean.endereco.rua}" required="true"  
-			                        	requiredMessage="#{msgs['endereco.ruaRequired']}" size="34"/>
-			                        <p:spacer width="10"/>
-									<h:outputText value="#{msgs['endereco.setor']}: " styleClass="labels" />
-									<p:spacer width="10"/>
-			                        <p:inputText id="setor" value="#{clienteBean.endereco.setor}" required="true"  
-			                        	requiredMessage="#{msgs['endereco.setorRequired']}" size="33"/>	
-								</h:panelGroup>
-								<h:outputText value="#{msgs['endereco.cidade']}: " styleClass="labels" />
-								<h:panelGroup>
-			                      	<h:panelGrid columns="5">
-				                           <p:inputText id="cidade" value="#{clienteBean.endereco.cidade}" required="true"  
-				                        	requiredMessage="#{msgs['endereco.cidadeRequired']}" size="34"/>
-										   <h:outputText value="#{msgs['endereco.uf']}: " styleClass="labels" />
-		                                   <p:selectOneMenu value="#{clienteBean.endereco.estado}" required="true" requiredMessage="#{msgs['endereco.ufRequired']}">
-		                                       <f:selectItems value="#{clienteBean.listaUFs}" />
-		                                   </p:selectOneMenu>
-										   <h:outputText value="#{msgs['endereco.cep']}: " styleClass="labels" />								
-				                           <p:inputText id="cep" value="#{clienteBean.endereco.cep}" required="true"  
-				                        		requiredMessage="#{msgs['endereco.cepRequired']}" size="25"/>		                                   			                        									
-			                      	</h:panelGrid>  				                        			                        							
-								</h:panelGroup>
-								<h:outputText value="#{msgs['endereco.complemento']}: " styleClass="labels" />		
-								<p:inputTextarea value="#{clienteBean.endereco.complemento}" style="width:640px;"/>	   
-		                           <f:facet name="footer">
-		                            <p:toolbar>
-		                            	<f:facet name="right">
-					                        <p:commandButton value="#{msgs['system.adicionar']}" process="@form" update="@form"/>					                                         
-		                            	</f:facet>
-		                            </p:toolbar>
-		                           </f:facet>								                     	
-							</h:panelGrid>
-	
-	                    </p:panel>
-	                    <f:facet name="footer">
-	                     <p:toolbar>
-	                     	<f:facet name="right">
-		                        <p:commandButton value="#{msgs['system.salvar']}" action="#{clienteBean.salvarCliente}" 
-		                                         update="panel1" ajax="false"/>	                                         
-	                     	</f:facet>
-	                     </p:toolbar>
-	                    </f:facet>	           
-	                </h:panelGrid>
-                </div>
-            </h:form>
+              <div align="center">
+	            <h:form id="form">
+		                <h:panelGrid columns="1" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:810px;">">
+		                    <p:panel id="panel1" style="border-radius:10px; box-shadow: rgba(0,0,0,0.4) 10px 10px; 
+		                             border: 1px solid blueviolet; width: 800px">
+		
+		                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:780px;">
+		                            <h:graphicImage id="imageAcesso" height="25" value="../images/novousuario.png" />
+		                            <h:outputText value="#{msgs['cliente.dadosNovoCliente']}" styleClass="titulosTabelas" />
+		                        </h:panelGrid>
+		
+				                 <p:panelGrid id="panelCliente" style="with: 100%; font-size: 16;">
+				                     <p:row style="border: white;">
+				                     	<p:column>
+				                     		<h:outputText value="#{msgs['cliente.nome']}: " styleClass="labels" />
+				                     	</p:column>
+				                     	<p:column>
+				                           <p:inputText id="nome" value="#{clienteBean.cliente.nome}" 
+				                                        required="true" size="30"
+				                                        requiredMessage="#{msgs['cliente.nomeRequired']}"
+				                                        validatorMessage="#{msgs['cliente.nomeErrado']}">
+				                               <f:validateLength minimum="3" maximum="25" for="nome"/>
+				                           </p:inputText>                     	
+				                     	</p:column>
+				                     	<p:column>
+				                     		<p:message for="nome" display="icon"/> 
+				                     	</p:column>
+				                     	<p:column>
+		 									<h:outputText value="#{msgs['cliente.telefoneFixo']}: " styleClass="labels" />
+				                     	</p:column>	
+				                     	<p:column>
+				                            <p:inputMask id="telefoneFixo" value="#{clienteBean.cliente.telefoneFixo}" 
+				                                         mask="(99) 9999-9999" required="true"
+				                                         requiredMessage="#{msgs['cliente.fixoRequired']}" >
+				                                <f:validateLength minimum="14" maximum="14" for="telefoneFixo"/>
+				                            </p:inputMask>
+				                     	</p:column>	
+				                     	<p:column>
+		                            		<p:message for="telefoneFixo" display="icon"/>  
+				                     	</p:column>			                     				                     		                     	                     
+				                     </p:row>
+				                     <p:row style="border: white;">
+				                     	<p:column>
+		   									<h:outputText value="#{msgs['cliente.telefoneCelular']}: " styleClass="labels" />
+				                     	</p:column>
+				                     	<p:column>
+				                            <p:inputMask id="telefoneCelular" value="#{clienteBean.cliente.telefoneCelular}" 
+				                                         mask="(99) 9999-9999" required="true"
+				                                         requiredMessage="#{msgs['cliente.celularRequired']}" >
+				                                <f:validateLength minimum="14" maximum="14" for="telefoneCelular"/>
+				                            </p:inputMask>                  	
+				                     	</p:column>
+				                     	<p:column>
+		 									<p:message for="telefoneCelular" display="icon"/>  
+				                     	</p:column>
+				                     	<p:column>
+											<h:outputText value="#{msgs['cliente.cpf']}: " styleClass="labels" />
+				                     	</p:column>	
+				                     	<p:column>
+				                            <p:inputMask id="cpf" value="#{clienteBean.cliente.cpfs}" mask="999.999.999-99" 
+				                                         required="true" requiredMessage="#{msgs['cliente.cpfRequired']}"> 
+				                                <f:validateLength minimum="14" maximum="14" for="cpf"/>
+				                            </p:inputMask>
+				                     	</p:column>	
+				                     	<p:column>
+		                            		<p:message for="cpf" display="icon"/> 
+				                     	</p:column>			                     				                     		                     	                     
+				                     </p:row>
+				                     <p:row style="border: white;">
+					                     <p:column>
+					                     	 <h:outputText value="#{msgs['cliente.sexo']}: " styleClass="labels" />
+					                     </p:column>
+					                     <p:column>
+				                            <p:selectOneRadio id="sexoB" value="#{clienteBean.sexoB}" styleClass="radioItem" 
+				                                              required="true"
+				                                              requiredMessage="#{msgs['cliente.sexoRequired']}">
+				                                <f:selectItem itemLabel="#{msgs['cliente.sexoMasculino']}  " itemValue="true" />
+				                                <f:selectItem itemLabel="#{msgs['cliente.sexoFeminino']}  " itemValue="false" />
+				                            </p:selectOneRadio>			                     
+					                     </p:column>
+					                     <p:column>
+					                      	<p:message for="sexoB" display="icon"/> 
+					                     </p:column>
+				                     	<p:column>
+				                     		<h:outputText value="#{msgs['cliente.dataNascimento']}: " styleClass="labels" />
+				                     	</p:column>
+				                     	<p:column>
+				                            <p:calendar value="#{clienteBean.cliente.dataNascimento}" id="popupCalendar" 
+				                                        pattern="dd/MM/yyyy" navigator="true" effect="fadeIn" required="true"
+				                                        requiredMessage="#{msgs['cliente.nascimentoRequired']}" />		                     	
+				                     	</p:column>
+				                     	<p:column>
+				                     	  	<p:message for="popupCalendar" display="icon"/> 
+				                     	</p:column>				                     
+				                     </p:row>
+				                      <p:row style="border: white;">
+				                     	<p:column>
+		 									<h:outputText value="#{msgs['login.usuario']}: " styleClass="labels" />
+				                     	</p:column>
+				                     	<p:column>
+				                            <p:inputText id="usuario" value="#{clienteBean.cliente.usuario}" required="true" 
+				                                         requiredMessage="#{msgs['login.usuarioRequired']}"
+				                                         validatorMessage="#{msgs['login.usuarioErrado']}" >
+				                                <f:validateLength minimum="5" maximum="25" for="usuario"/>
+				                            </p:inputText>		                     	
+				                     	</p:column>
+				                     	<p:column>
+		                            		<p:message for="usuario" display="icon"/> 
+				                     	</p:column>		
+				                     	<p:column>
+		 									<h:outputText value="#{msgs['cliente.senha']}: " styleClass="labels" />
+				                     	</p:column>
+				                     	<p:column>
+				                            <p:password value="#{clienteBean.cliente.senha}" id="senha" required="true"
+				                                         requiredMessage="#{msgs['login.senhaRequired']}"
+				                                         validatorMessage="#{msgs['login.senhaErrada']}">
+				                                <f:validateLength minimum="5" maximum="25" for="senha"></f:validateLength>
+				                            </p:password>	                     	
+				                     	</p:column>
+				                     	<p:column>
+		                            		<p:message for="senha" display="icon"/>  
+				                     	</p:column>		                     			                      
+				                      </p:row>		                     		                     
+		                 		</p:panelGrid> 
+		                        <p:growl id="msgs"/>
+		                        
+		                        <br/>
+		
+		                        <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:780px;">
+		                            <h:graphicImage id="imageAcessoEndereco" height="25" value="../images/novousuario.png" />
+		                            <h:outputText value="#{msgs['endereco.dadosEndereco']}" styleClass="titulosTabelas" />
+		                        </h:panelGrid>
+		
+								<h:panelGrid id="panelEndereco" columns="2" style="width:100%;">
+									<h:outputText value="#{msgs['endereco.rua']}: " styleClass="labels" />
+									<h:panelGroup>
+				                        <p:inputText id="rua" value="#{clienteBean.endereco.rua}" required="true"  
+				                        	requiredMessage="#{msgs['endereco.ruaRequired']}" size="34"/>
+				                        <p:spacer width="10"/>
+										<h:outputText value="#{msgs['endereco.setor']}: " styleClass="labels" />
+										<p:spacer width="10"/>
+				                        <p:inputText id="setor" value="#{clienteBean.endereco.setor}" required="true"  
+				                        	requiredMessage="#{msgs['endereco.setorRequired']}" size="33"/>	
+									</h:panelGroup>
+									<h:outputText value="#{msgs['endereco.cidade']}: " styleClass="labels" />
+									<h:panelGroup>
+				                      	<h:panelGrid columns="5">
+					                           <p:inputText id="cidade" value="#{clienteBean.endereco.cidade}" required="true"  
+					                        	requiredMessage="#{msgs['endereco.cidadeRequired']}" size="34"/>
+											   <h:outputText value="#{msgs['endereco.uf']}: " styleClass="labels" />
+			                                   <p:selectOneMenu value="#{clienteBean.endereco.estado}" required="true" requiredMessage="#{msgs['endereco.ufRequired']}">
+			                                       <f:selectItems value="#{clienteBean.listaUFs}" />
+			                                   </p:selectOneMenu>
+											   <h:outputText value="#{msgs['endereco.cep']}: " styleClass="labels" />								
+					                           <p:inputText id="cep" value="#{clienteBean.endereco.cep}" required="true"  
+					                        		requiredMessage="#{msgs['endereco.cepRequired']}" size="25"/>		                                   			                        									
+				                      	</h:panelGrid>  				                        			                        							
+									</h:panelGroup>
+									<h:outputText value="#{msgs['endereco.complemento']}: " styleClass="labels" />		
+									<p:inputTextarea value="#{clienteBean.endereco.complemento}" style="width:640px;"/>	   
+			                           <f:facet name="footer">
+			                            <p:toolbar style="height:25px;">
+			                            	<f:facet name="right">
+						                        <p:commandButton value="#{msgs['system.adicionar']}" style="height:25px; font-size: 15px;" process="form:panelEndereco" 
+						                        	update="@form" action="#{clienteBean.adicionarEnderecoClienteNovo}"/>					                                         
+			                            	</f:facet>
+			                            </p:toolbar>
+			                           </f:facet>								                     	
+								</h:panelGrid>
+							    <p:tabView id="tabEnderecos" value="#{clienteBean.cliente.enderecos}" var="endereco" 
+							    	rendered="#{not empty clienteBean.cliente.enderecos}" style="font-size:13px;">
+							        <p:tab title="#{msgs['endereco.cep']} - #{endereco.cep}">
+							            <p:panelGrid style="width:100%; font-size: 18px;">
+							            	<p:row>
+							            		<p:column>
+							            			<h:outputText value="#{msgs['endereco.rua']}" style="font-weight: bold"/>
+							            		</p:column>
+							            		<p:column>
+							                		<h:outputText value="#{msgs['endereco.setor']}" style="font-weight: bold"/>
+							            		</p:column>
+							            		<p:column>
+							            			<h:outputText value="#{msgs['endereco.cidade']} - #{msgs['endereco.uf']}" style="font-weight: bold"/>
+							            		</p:column>	
+							            		<p:column>
+							            			<h:outputText value="#{msgs['system.acoes']}" style="font-weight: bold"/>
+							            		</p:column>									            							            								            		
+							            	</p:row>
+							            	<p:row>
+							            		<p:column>
+							            			<h:outputText value="#{endereco.rua}" />
+							            		</p:column>
+							            		<p:column>
+							                		<h:outputText value="#{endereco.setor}"/>
+							            		</p:column>
+							            		<p:column>
+							            			<h:outputText value="#{endereco.cidade} - #{endereco.estado} " />
+							            		</p:column>	
+							            		<p:column>
+					                                <p:commandButton value="#{msgs['system.editar']}" action="#{clienteBean.editarEnderecoClienteNovo}" 
+					                                	process="@this" update="@form">
+					                                	<f:setPropertyActionListener value="#{endereco}" target="#{clienteBean.endereco}"/>
+					                                </p:commandButton>
+							            		</p:column>						            								            	
+							            	</p:row>
+							            </p:panelGrid>
+							        </p:tab>
+							    </p:tabView>	
+		                    </p:panel>
+		                    <f:facet name="footer">
+		                     <p:toolbar style="height:40px; margin-top:10px;">
+		                     	<f:facet name="left">
+			                        <p:commandButton style="height:35px; font-size: 15px;" value="#{msgs['system.limpar']}" resetValues="true" 
+			                        	process="@this" update="@form" action="#{clienteBean.limpar}"/>	   	                     	
+		                     	</f:facet>
+		                     	<f:facet name="right">
+			                        <p:commandButton style="height:35px; font-size: 15px;" value="#{msgs['system.salvar']}" process="@form" update="@form" 
+			                        actionListener="#{clienteBean.verificaListaEnderecosCliente}" action="#{clienteBean.salvarCliente}" />	                                         
+		                     	</f:facet>
+		                     </p:toolbar>
+		                    </f:facet>	           
+		                </h:panelGrid>
+	            </h:form>
+              </div>
         </ui:define>
     </ui:composition>
 </html>
