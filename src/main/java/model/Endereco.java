@@ -39,9 +39,6 @@ public class Endereco extends BaseModel {
 	@Column
 	private int cep;
 
-	@Column(name = "cliente_id") // coluna e atributo tem nomes diferntes, por
-	private long clienteId;
-
 	/**
 	 * @return the rua
 	 */
@@ -130,21 +127,6 @@ public class Endereco extends BaseModel {
 	 */
 	public void setCep(int cep) {
 		this.cep = cep;
-	}
-
-	/**
-	 * @return the clienteId
-	 */
-	public long getClienteId() {
-		return clienteId;
-	}
-
-	/**
-	 * @param clienteId
-	 *            the clienteId to set
-	 */
-	public void setClienteId(long clienteId) {
-		this.clienteId = clienteId;
 	}
 
 }

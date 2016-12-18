@@ -270,6 +270,8 @@ public class ClienteBean {
 	public void verificaListaEnderecosCliente() {
 		if (this.cliente.getEnderecos().isEmpty()) {
 			setErroEndereco(true);
+		} else {
+			setErroEndereco(false);
 		}
 	}
 
@@ -287,12 +289,12 @@ public class ClienteBean {
 			FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					FacesHelper.getMessage("cliente.enderecoVazio"), "");
 			contexto.addMessage(null, msg);
-			return "cadastrarCliente";
+			return null;
 		} else {
 			setErroEndereco(false);
 			clienteDAO.salvar(cliente);
 			setLogado(true);
-			return "mostrarCliente";
+			return "mostrarCliente?faces-redirect=true";
 		}
 	}
 
@@ -365,13 +367,13 @@ public class ClienteBean {
 				atualizarEnderecoCliente();
 				this.endereco = new Endereco();
 			} else {
-				this.endereco.setClienteId(cliente.getObjectID());
+				// this.endereco.setClienteId(cliente.getObjectID());
 				this.cliente.getEnderecos().add(this.endereco);
 				atualizarEnderecoCliente();
 				this.endereco = new Endereco();
 			}
 		} else {
-			this.endereco.setClienteId(cliente.getObjectID());
+			// this.endereco.setClienteId(cliente.getObjectID());
 			this.cliente.getEnderecos().add(this.endereco);
 			atualizarEnderecoCliente();
 			this.endereco = new Endereco();
@@ -406,7 +408,7 @@ public class ClienteBean {
 	 *         enderecos
 	 */
 	public String salvarEndereco() {
-		this.endereco.setClienteId(cliente.getObjectID());
+		// this.endereco.setClienteId(cliente.getObjectID());
 		this.cliente.getEnderecos().add(this.endereco);
 		atualizarCliente();
 		return "mostrarCliente";
