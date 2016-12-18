@@ -183,49 +183,49 @@
 							<p:toolbar>
 								<f:facet name="right">
 			                       <p:commandButton value="#{msgs['system.adicionar']}" style="height:25px; font-size: 15px;" process="panelEndereco" 
-			                        	update="@form" action="#{clienteBean.adicionarEnderecoClienteNovo}"/>										
+			                        	update="panelEndereco, msgs" action="#{clienteBean.adicionarEnderecoClienteNovo}"/>										
 								</f:facet>
 							</p:toolbar>
+						    <p:tabView id="tabEnderecos" value="#{clienteBean.cliente.enderecos}" var="endereco" 
+						    	rendered="#{not empty clienteBean.cliente.enderecos}" style="font-size:13px;">
+						        <p:tab title="#{msgs['endereco.cep']} - #{endereco.cep}">
+						            <p:panelGrid style="width:100%; font-size: 18px;">
+						            	<p:row>
+						            		<p:column>
+						            			<h:outputText value="#{msgs['endereco.rua']}" style="font-weight: bold"/>
+						            		</p:column>
+						            		<p:column>
+						                		<h:outputText value="#{msgs['endereco.setor']}" style="font-weight: bold"/>
+						            		</p:column>
+						            		<p:column>
+						            			<h:outputText value="#{msgs['endereco.cidade']} - #{msgs['endereco.uf']}" style="font-weight: bold"/>
+						            		</p:column>	
+						            		<p:column>
+						            			<h:outputText value="#{msgs['system.acoes']}" style="font-weight: bold"/>
+						            		</p:column>									            							            								            		
+						            	</p:row>
+						            	<p:row>
+						            		<p:column>
+						            			<h:outputText value="#{endereco.rua}" />
+						            		</p:column>
+						            		<p:column>
+						                		<h:outputText value="#{endereco.setor}"/>
+						            		</p:column>
+						            		<p:column>
+						            			<h:outputText value="#{endereco.cidade} - #{endereco.estado} " />
+						            		</p:column>	
+						            		<p:column>
+				                                <p:commandButton value="#{msgs['system.editar']}" action="#{clienteBean.editarEnderecoClienteNovo}" 
+				                                	process="@this" update="@form">
+				                                	<f:setPropertyActionListener value="#{endereco}" target="#{clienteBean.enderecoSelecionado}"/>
+				                                </p:commandButton>
+						            		</p:column>						            								            	
+						            	</p:row>
+						            </p:panelGrid>
+						        </p:tab>
+						    </p:tabView>							
 						</f:facet>
 					</h:panelGrid>
-				    <p:tabView id="tabEnderecos" value="#{clienteBean.cliente.enderecos}" var="endereco" 
-				    	rendered="#{not empty clienteBean.cliente.enderecos}" style="font-size:13px;">
-				        <p:tab title="#{msgs['endereco.cep']} - #{endereco.cep}">
-				            <p:panelGrid style="width:100%; font-size: 18px;">
-				            	<p:row>
-				            		<p:column>
-				            			<h:outputText value="#{msgs['endereco.rua']}" style="font-weight: bold"/>
-				            		</p:column>
-				            		<p:column>
-				                		<h:outputText value="#{msgs['endereco.setor']}" style="font-weight: bold"/>
-				            		</p:column>
-				            		<p:column>
-				            			<h:outputText value="#{msgs['endereco.cidade']} - #{msgs['endereco.uf']}" style="font-weight: bold"/>
-				            		</p:column>	
-				            		<p:column>
-				            			<h:outputText value="#{msgs['system.acoes']}" style="font-weight: bold"/>
-				            		</p:column>									            							            								            		
-				            	</p:row>
-				            	<p:row>
-				            		<p:column>
-				            			<h:outputText value="#{endereco.rua}" />
-				            		</p:column>
-				            		<p:column>
-				                		<h:outputText value="#{endereco.setor}"/>
-				            		</p:column>
-				            		<p:column>
-				            			<h:outputText value="#{endereco.cidade} - #{endereco.estado} " />
-				            		</p:column>	
-				            		<p:column>
-		                                <p:commandButton value="#{msgs['system.editar']}" action="#{clienteBean.editarEnderecoClienteNovo}" 
-		                                	process="@this" update="@form">
-		                                	<f:setPropertyActionListener value="#{endereco}" target="#{clienteBean.endereco}"/>
-		                                </p:commandButton>
-				            		</p:column>						            								            	
-				            	</p:row>
-				            </p:panelGrid>
-				        </p:tab>
-				    </p:tabView>
 	            </h:form>
               </div>
         </ui:define>

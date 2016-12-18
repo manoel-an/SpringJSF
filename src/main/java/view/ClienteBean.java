@@ -50,6 +50,8 @@ public class ClienteBean {
 
 	private boolean erroEndereco;
 
+	private Endereco enderecoSelecionado;
+
 	static {
 		UFs = new ArrayList<SelectItem>(27);
 		UFs.add(new SelectItem("Acre", "AC"));
@@ -356,7 +358,25 @@ public class ClienteBean {
 	}
 
 	public void editarEnderecoClienteNovo() {
-		this.cliente.getEnderecos().remove(this.cliente.getEnderecos().indexOf(this.endereco));
+		setEndereco(enderecoSelecionado);
+		this.cliente.getEnderecos()
+				.remove(this.retornaIndiceEndereco(this.cliente.getEnderecos(), enderecoSelecionado));
+	}
+
+	public int retornaIndiceEndereco(List<Endereco> enderecos, Endereco enderecoSelecionado) {
+		int retorno = 0;
+		for (Endereco endereco : enderecos) {
+			if (endereco.getCep() == enderecoSelecionado.getCep()
+					&& endereco.getCidade().equals(enderecoSelecionado.getCidade())
+					&& (endereco.getEstado().equals(enderecoSelecionado.getEstado())
+							&& (endereco.getRua().equals(enderecoSelecionado.getRua())
+									&& (endereco.getSetor().equals(enderecoSelecionado.getSetor()))))) {
+				break;
+			} else {
+				retorno++;
+			}
+		}
+		return retorno;
 	}
 
 	public void adicionarEnderecoClienteExistente() {
@@ -440,6 +460,14 @@ public class ClienteBean {
 
 	public void setErroEndereco(boolean erroEndereco) {
 		this.erroEndereco = erroEndereco;
+	}
+
+	public Endereco getEnderecoSelecionado() {
+		return enderecoSelecionado;
+	}
+
+	public void setEnderecoSelecionado(Endereco enderecoSelecionado) {
+		this.enderecoSelecionado = enderecoSelecionado;
 	}
 
 }
