@@ -2,7 +2,7 @@
 <!--
     Document   : cadastrarProduto
     30 mai 2014, 12:10:36
-    Author     : vinicius
+    Author     : vinicius and grupo Bertran, Claudio, Manoel e Thiago
 -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -129,7 +129,25 @@
                      	</p:column>
                      	<p:column>
                           		<p:message for="senha" display="icon"/>             	       
-                     	</p:column>		
+                     	</p:column>
+                     	</p:row>
+                     	<p:row style="border: white;">	
+                     	<p:column>
+                     	<h:outputText value="#{msgs['cliente.perfil']}: " styleClass="labels" />
+                     	</p:column>
+                     	<p:column>
+                            <p:selectOneRadio id="perfil" value="#{clienteBean.perfilB}" styleClass="radioItem" 
+                                              required="true" 
+                                              requiredMessage="#{msgs['cliente.perfilRequired']}">
+                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="true" />
+                                <f:selectItem itemLabel="#{msgs['cliente.Comum']}  " itemValue="false" />
+                               
+                            </p:selectOneRadio>
+                         </p:column>  
+                            <p:column>
+                          		<p:message for="senha" display="icon"/>             	       
+                     		</p:column>	
+                            	
                       </p:row>	
                       <p:row style="border: white;">
 	                      <p:column colspan="8">

@@ -13,6 +13,8 @@ import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -249,6 +251,7 @@ public class Cliente extends BaseModel {
 		this.enderecos = enderecos;
 	}
 
+    @Enumerated(EnumType.STRING)
 	public EnumPerfil getPerfil() {
 		return perfil;
 	}

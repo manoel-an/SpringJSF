@@ -2,7 +2,7 @@
 <!--
     Document   : mostrarCliente
     Created on : 30 mai 2014, 12:12:00
-    Author     : vinicius
+    Author     : vinicius and grupo Bertran, Claudio, Manoel e Thiago
 -->
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -92,13 +92,16 @@
                             <p:message for="senha" display="icon"/>  
                             
                             <h:outputText value="#{msgs['cliente.perfil']}: " styleClass="labels" />
-                            <p:selectOneRadio id="perfil" value="#{clienteBean.cliente.perfil}" styleClass="radioItem" 
-                                              required="true"
+                            <p:selectOneRadio id="perfil" value="#{clienteBean.perfilB}" styleClass="radioItem" 
+                                              required="true" 
                                               requiredMessage="#{msgs['cliente.perfilRequired']}">
-                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="#{clienteBean.perfil.Administrador}" />
+                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="true" />
                                 <f:selectItem itemLabel="#{msgs['cliente.Comum']}  " itemValue="false" />
+                               
                             </p:selectOneRadio>
-                            <p:message for="perfil" display="icon"/>
+                            
+                            
+							<p:message for="perfil" display="icon"/>
                             
                             <f:facet name="footer">
 	                            <p:toolbar>

@@ -2,7 +2,7 @@
 <!--
     Document   : mostrarCliente
     Created on : 30 mai 2014, 11:14:24
-    Author     : vinicius
+    Author     : vinicius and grupo Bertran, Claudio, Manoel e Thiago
 -->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
@@ -58,6 +58,9 @@
 
                             <h:outputText value="#{msgs['login.usuario']}: " styleClass="labelsBold" />
                             <h:outputText value="#{clienteBean.cliente.usuario}" styleClass="labels"/>
+                            
+                            <h:outputText value="#{msgs['cliente.perfil']}: " styleClass="labelsBold" />
+                            <h:outputText value="#{clienteBean.cliente.perfil}" styleClass="labels"/>
 
                             <h:outputText value="#{msgs['cliente.exclusaoCadastro']}: " styleClass="labelsBold" />
                             <h:panelGrid columns="2" >

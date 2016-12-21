@@ -27,7 +27,7 @@ import model.EnumPerfil;
 
 /**
  *
- * @author vinicius
+ * @author Vinícius. Alter: grupo Bertran, Cláudio, Manoel e Thiago
  */
 @Component
 public class ClienteBean {
@@ -35,6 +35,7 @@ public class ClienteBean {
 	private Cliente cliente = new Cliente();
 	private boolean logado = false;
 	private boolean sexoB;
+	private boolean perfilB;
 	private DataModel model;
 	private Endereco endereco;
 
@@ -86,12 +87,43 @@ public class ClienteBean {
 
 	/**
 	 * @inicia a lista com os perfis assim que o bean for iniciado.
+	 * inicia outros métodos.
 	 */
 	@PostConstruct
 	public void init() {
 		this.perfis = Arrays.asList(EnumPerfil.values());
+		limpar();
+	}
+	/**@limpa o objeto cliente*/
+	private void limpar() {
+		this.cliente = new Cliente();
+		
 	}
 
+	public void verificaPermissao(){
+		clienteDAO.procurarCliente(cliente.getCpf()); //CONTINUAR
+	}
+
+
+	public boolean getPerfilB() {
+		if (this.cliente.getPerfil().equals("Administrador")) {
+			setPerfilB(true);
+		} else if (this.cliente.getPerfil().equals("Comum")) {
+			setPerfilB(false);
+		}
+		return perfilB;
+	}
+
+	public void setPerfilB(boolean perfilB) {
+		this.perfilB = perfilB;
+		if (perfilB == true) {
+			this.cliente.setPerfil(EnumPerfil.Administrador);
+		} else if (perfilB == false) {
+			this.cliente.setPerfil(EnumPerfil.Comum);
+		}
+	}
+	
+	
 	/**
 	 * @return the sexoB
 	 */
@@ -126,7 +158,7 @@ public class ClienteBean {
 
 	/**
 	 * @param cliente
-	 *            the cliente to set
+	 *            the cliente to set. Form
 	 */
 	public void setCliente(Cliente cliente) {
 		cliente.setNome(cliente.getNome().trim());
@@ -134,7 +166,7 @@ public class ClienteBean {
 		cliente.setTelefoneCelular(cliente.getTelefoneCelular().trim());
 		cliente.setTelefoneFixo(cliente.getTelefoneFixo().trim());
 		cliente.setUsuario(cliente.getUsuario().trim());
-		cliente.setPerfil(cliente.getPerfil());
+		cliente.setPerfil(cliente.getPerfil().Comum);
 		this.cliente = cliente;
 	}
 
@@ -187,6 +219,7 @@ public class ClienteBean {
 		if (cli != null && cli.getCpf() != 0) {
 			setCliente(cli);
 			setLogado(true);
+			System.out.println(cli.getNome()); 
 			retorno = "mostrarCliente";
 		} else {
 			FacesContext contexto = FacesContext.getCurrentInstance();
@@ -219,8 +252,12 @@ public class ClienteBean {
 	 *         cliente.
 	 */
 	public String editarCliente() {
+	try{
 		setCliente(cliente); // Limpa espacos em branco das strings
 		return "atualizarCliente";
+	}catch(NullPointerException n){
+		return "mostrarCliente";
+	}
 	}
 
 	/**
@@ -294,6 +331,7 @@ public class ClienteBean {
 			return null;
 		} else {
 			setErroEndereco(false);
+			cliente.setPerfil(EnumPerfil.Comum);
 			clienteDAO.salvar(cliente);
 			setLogado(true);
 			return "mostrarCliente?faces-redirect=true";
@@ -351,7 +389,7 @@ public class ClienteBean {
 		this.endereco = new Endereco();
 	}
 
-	public void limpar() {
+	public void Endereco() {
 		if (!this.cliente.getEnderecos().isEmpty()) {
 			this.cliente.getEnderecos().clear();
 		}
@@ -454,6 +492,10 @@ public class ClienteBean {
 		this.perfil = perfil;
 	}
 
+//<<<<<<< HEAD
+	
+	
+
 	public boolean isErroEndereco() {
 		return erroEndereco;
 	}
@@ -469,5 +511,6 @@ public class ClienteBean {
 	public void setEnderecoSelecionado(Endereco enderecoSelecionado) {
 		this.enderecoSelecionado = enderecoSelecionado;
 	}
+//>>>>>>> branch 'master' of https://github.com/manoel-an/SpringJSF.git
 
 }
