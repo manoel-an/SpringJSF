@@ -13,7 +13,7 @@
     <ui:composition template="template.xhtml">
         <ui:define name="body">
               <div align="center">
-	            <h:form id="form">
+	            <h:form id="form" >
                  <h:panelGrid columns="2" rowClasses="rowRoxo" styleClass="tabelaRich750" style="width:780px;">
                      <h:graphicImage id="imageAcesso" height="25" value="../images/novousuario.png" />
                      <h:outputText value="#{msgs['cliente.dadosNovoCliente']}" styleClass="titulosTabelas" />
@@ -139,8 +139,8 @@
                             <p:selectOneRadio id="perfil" value="#{clienteBean.perfilB}" styleClass="radioItem" 
                                               required="true" 
                                               requiredMessage="#{msgs['cliente.perfilRequired']}">
-                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="true" />
-                                <f:selectItem itemLabel="#{msgs['cliente.Comum']}  " itemValue="false" />
+                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="true" itemDisabled="#{clienteBean.usuarioLogado.perfil != Administrador}"/>
+                                <f:selectItem itemLabel="#{msgs['cliente.Comum']}  " itemValue="false"  />
                                
                             </p:selectOneRadio>
                          </p:column>  

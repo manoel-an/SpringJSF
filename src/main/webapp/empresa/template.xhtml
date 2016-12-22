@@ -61,7 +61,7 @@
 
                         <h:panelGrid columns="1" columnClasses="alignLeft" style="vertical-align: top">
                             <h:form id="menuForm2">
-                                <h:panelGrid rowClasses="rowRoxo" columns="2" styleClass="tabelaRich800"
+                                <h:panelGrid rowClasses="rowRoxo" columns="3" styleClass="tabelaRich800"
                                              columnClasses="alignLeft, alignRight" >
                                     <h:panelGrid columns="2" width="290" columnClasses="alignLeft, alignLeft" >
                                         <h:outputText value="#{msgs['header.escolhaIdioma']}" styleClass="titulosTabelas" />
@@ -73,12 +73,17 @@
                                         </p:selectOneMenu>
 
                                     </h:panelGrid>
-
+										
                                     <h:commandLink action="#{clienteBean.logout}" value="#{msgs['login.logout']}"
                                                    rendered="#{clienteBean.logado}" styleClass="hiperlink" />
+                                    
+                                    <h:panelGrid columns="2">
+                                    <p:outputLabel value="Olá" styleClass="titulosTabelas" />
+                                    <h:outputText value="#{clienteBean.usuarioLogado.nome}" styleClass="titulosTabelas" />
+                                    </h:panelGrid>
                                 </h:panelGrid>
                             </h:form>
-                            <ui:insert name="body" />
+                           <ui:insert name="body" />
                         </h:panelGrid>
                     </h:panelGrid>
                 </p:panel>

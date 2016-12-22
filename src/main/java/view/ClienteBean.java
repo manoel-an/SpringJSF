@@ -38,6 +38,7 @@ public class ClienteBean {
 	private boolean perfilB;
 	private DataModel model;
 	private Endereco endereco;
+	private Cliente usuarioLogado;
 
 	@Autowired
 	private ClienteDAO clienteDAO;
@@ -219,7 +220,7 @@ public class ClienteBean {
 		if (cli != null && cli.getCpf() != 0) {
 			setCliente(cli);
 			setLogado(true);
-			System.out.println(cli.getNome()); 
+			this.setUsuarioLogado(cli);
 			retorno = "mostrarCliente";
 		} else {
 			FacesContext contexto = FacesContext.getCurrentInstance();
@@ -241,6 +242,7 @@ public class ClienteBean {
 		setLogado(false);
 		Cliente c = new Cliente("", "", "", "", "", "", null, 0, null, perfil);
 		setCliente(c);
+		this.setUsuarioLogado(null);
 		return "empresa";
 	}
 
@@ -491,11 +493,18 @@ public class ClienteBean {
 	public void setPerfil(EnumPerfil perfil) {
 		this.perfil = perfil;
 	}
+	
 
 //<<<<<<< HEAD
 	
 	
 
+	public Cliente getUsuarioLogado() {
+		return usuarioLogado;
+	}
+	public void setUsuarioLogado(Cliente usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
+	}
 	public boolean isErroEndereco() {
 		return erroEndereco;
 	}
