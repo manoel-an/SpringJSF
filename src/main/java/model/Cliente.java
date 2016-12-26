@@ -253,7 +253,7 @@ public class Cliente extends BaseModel {
 
     @Enumerated(EnumType.STRING)
 	public EnumPerfil getPerfil() {
-		return perfil;
+    	return perfil;
 	}
 
 	public void setPerfil(EnumPerfil perfil) {

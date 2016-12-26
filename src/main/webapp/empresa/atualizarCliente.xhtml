@@ -95,7 +95,7 @@
                             <p:selectOneRadio id="perfil" value="#{clienteBean.perfilB}" styleClass="radioItem" 
                                               required="true" 
                                               requiredMessage="#{msgs['cliente.perfilRequired']}">
-                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="true" />
+                                <f:selectItem itemLabel="#{msgs['cliente.Adm']}  " itemValue="true" itemDisabled="#{clienteBean.usuarioLogado.perfil != 'Administrador'}"/>
                                 <f:selectItem itemLabel="#{msgs['cliente.Comum']}  " itemValue="false" />
                                
                             </p:selectOneRadio>

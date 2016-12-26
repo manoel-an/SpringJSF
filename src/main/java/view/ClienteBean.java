@@ -93,19 +93,8 @@ public class ClienteBean {
 	@PostConstruct
 	public void init() {
 		this.perfis = Arrays.asList(EnumPerfil.values());
-		limpar();
 	}
-	/**@limpa o objeto cliente*/
-	private void limpar() {
-		this.cliente = new Cliente();
-		
-	}
-
-	public void verificaPermissao(){
-		clienteDAO.procurarCliente(cliente.getCpf()); //CONTINUAR
-	}
-
-
+	
 	public boolean getPerfilB() {
 		if (this.cliente.getPerfil().equals("Administrador")) {
 			setPerfilB(true);
@@ -161,13 +150,14 @@ public class ClienteBean {
 	 * @param cliente
 	 *            the cliente to set. Form
 	 */
+	
 	public void setCliente(Cliente cliente) {
 		cliente.setNome(cliente.getNome().trim());
 		cliente.setSenha(cliente.getSenha().trim());
 		cliente.setTelefoneCelular(cliente.getTelefoneCelular().trim());
 		cliente.setTelefoneFixo(cliente.getTelefoneFixo().trim());
 		cliente.setUsuario(cliente.getUsuario().trim());
-		cliente.setPerfil(cliente.getPerfil().Comum);
+		//cliente.setPerfil(cliente.getPerfil());
 		this.cliente = cliente;
 	}
 
@@ -240,7 +230,7 @@ public class ClienteBean {
 	 */
 	public String logout() {
 		setLogado(false);
-		Cliente c = new Cliente("", "", "", "", "", "", null, 0, null, perfil);
+		Cliente c = new Cliente("", "", "", "", "", "", null, 0, null, null);
 		setCliente(c);
 		this.setUsuarioLogado(null);
 		return "empresa";
@@ -302,10 +292,11 @@ public class ClienteBean {
 	 *         cliente.
 	 */
 	public String novoCliente() {
-		Cliente c = new Cliente("", "", "", "", "", "", null, 0, new ArrayList<Endereco>(), perfil);
+		Cliente c = new Cliente("", "", "", "", "", "", null, 0, new ArrayList<Endereco>(), EnumPerfil.Comum);
 		setCliente(c);
 		setLogado(false);
 		return "cadastrarCliente";
+		
 	}
 
 	public void verificaListaEnderecosCliente() {
