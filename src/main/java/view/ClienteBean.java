@@ -281,6 +281,7 @@ public class ClienteBean {
 	public String excluirCliente() {
 		clienteDAO.excluir(cliente);
 		setLogado(false);
+		this.setUsuarioLogado(null);
 		this.cliente = new Cliente();
 		return "empresa";
 	}
