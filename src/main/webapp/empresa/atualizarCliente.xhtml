@@ -221,8 +221,8 @@
 						                        	process="@form" update="@form, :form" oncomplete="if(!args.validationFailed) { PF('addEndereco').hide();}"/>					                                         
 			                            	</f:facet>
 			                            	<f:facet name="right">
-						                        <p:commandButton value="#{msgs['system.fechar']}" process="@this" update="@none" 
-						                        	onclick="PF('addEndereco').hide();"/>
+						                        <p:commandButton value="#{msgs['system.fechar']}" process="@this" update="@none" action="#{clienteBean.inicializaEndereco}"
+						                        	oncomplete="PF('addEndereco').hide();"/>
 			                            	</f:facet>			                            	
 			                            </p:toolbar>
 		                            </f:facet>								                     	
