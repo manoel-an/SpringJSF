@@ -63,15 +63,15 @@
                                 </f:facet>
 
                                 <p:commandLink value="#{msgs['system.excluir']}"
-                                               styleClass="hiperlink" onclick="confirmation.show()">
+                                               styleClass="hiperlink" onclick="PF('confirmation').show();">
                                     <f:setPropertyActionListener value="#{prod}" target="#{produtoBean.produto}" />
                                 </p:commandLink>
                                 <p:confirmDialog id="confirmDialog" message="#{msgs['produtos.confirmaExclusao']}"  
                                                  header="#{msgs['produtos.excluirProdutoPergunta']} " severity="alert" 
                                                  widgetVar="confirmation">
-                                    <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="confirmation.hide()"  
+                                    <p:commandButton id="confirma" value="#{msgs['system.sim']}" oncomplete="PF('confirmation').hide();"  
                                                      action="#{produtoBean.excluirProduto}" ajax="false" />
-                                    <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="confirmation.hide()" 
+                                    <p:commandButton id="negativa" value="#{msgs['system.nao']}" onclick="PF('confirmation').hide();" 
                                                      type="button" />   
                                 </p:confirmDialog>
                             </p:column>
@@ -80,9 +80,9 @@
                                 <f:facet name="header">
                                     <h:panelGrid columns="2" id="gridChart">
                                         <h:graphicImage id="imageChart1" height="35" value="../images/chart.png" 
-                                                        rendered="#{carrinhoBean.vazio}"/>
+                                                        rendered="#{empty produtoBean.todosProdutos1}"/>
                                         <h:commandLink action="carrinho" styleClass="hiperlink" 
-                                                       rendered="#{!carrinhoBean.vazio}"> 
+                                                       rendered="#{not empty produtoBean.todosProdutos1}"> 
                                             <h:graphicImage id="imageChart2" height="35" value="../images/chartfull.png" />
                                         </h:commandLink>
                                     </h:panelGrid>                                

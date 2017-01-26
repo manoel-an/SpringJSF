@@ -67,7 +67,10 @@
                                 <f:validateDoubleRange minimum="10.00" maximum="9999.99" for="preco" />
                             </p:inputText>
                             <p:message for="preco" display="icon"/>
-
+                           
+                            <h:outputLabel styleClass="labels" value="#{msgs['produtos.quantidade']}:" />  
+                            <p:inputText value="#{produtoBean.produto.qtd}" required="true">
+                            </p:inputText>
                         </h:panelGrid>
 
                         <br/>

@@ -17,11 +17,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "produto")
-@AttributeOverride(name="objectID", column=@Column(name="produto_id"))
+@AttributeOverride(name = "objectID", column = @Column(name = "produto_id") )
 @SequenceGenerator(name = "SEQUENCE", sequenceName = "produto_produto_id_seq")
-public class Produto extends BaseModel{
+public class Produto extends BaseModel {
 
-    @Column(name = "nome") //(name = "nome") somente necessario quando atributo e coluna forem diferentes
+    @Column(name = "nome") // (name = "nome") somente necessario quando atributo
+                           // e coluna forem diferentes
     private String nome;
 
     @Column
@@ -29,18 +30,22 @@ public class Produto extends BaseModel{
 
     @Column
     private int codigo;
-    
+
     @Column
     private float preco;
 
-    public Produto() {
-    }
+    @Column
+    private int qtd;
 
-    public Produto(String nome, String descricao, int codigo, float preco) {
+    public Produto(String nome, String descricao, int codigo, float preco, int qtd) {
         this.nome = nome;
         this.descricao = descricao;
         this.codigo = codigo;
         this.preco = preco;
+        this.qtd = qtd;
+    }
+
+    public Produto() {
     }
 
     /**
@@ -51,7 +56,8 @@ public class Produto extends BaseModel{
     }
 
     /**
-     * @param nome the nome to set
+     * @param nome
+     *            the nome to set
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -65,7 +71,8 @@ public class Produto extends BaseModel{
     }
 
     /**
-     * @param descricao the descricao to set
+     * @param descricao
+     *            the descricao to set
      */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
@@ -79,7 +86,8 @@ public class Produto extends BaseModel{
     }
 
     /**
-     * @param codigo the codigo to set
+     * @param codigo
+     *            the codigo to set
      */
     public void setCodigo(int codigo) {
         this.codigo = codigo;
@@ -93,10 +101,19 @@ public class Produto extends BaseModel{
     }
 
     /**
-     * @param preco the preco to set
+     * @param preco
+     *            the preco to set
      */
     public void setPreco(float preco) {
         this.preco = preco;
+    }
+
+    public int getQtd() {
+        return qtd;
+    }
+
+    public void setQtd(int qtd) {
+        this.qtd = qtd;
     }
 
 }
