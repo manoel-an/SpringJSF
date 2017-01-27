@@ -81,17 +81,15 @@
                                     <h:panelGrid columns="2" id="gridChart">
                                         <h:graphicImage id="imageChart1" height="35" value="../images/chart.png" 
                                                         rendered="#{empty produtoBean.todosProdutos1}"/>
-                                        <h:commandLink action="carrinho" styleClass="hiperlink" 
-                                                       rendered="#{not empty produtoBean.todosProdutos1}"> 
-                                            <h:graphicImage id="imageChart2" height="35" value="../images/chartfull.png" />
-                                        </h:commandLink>
+                                        <h:graphicImage id="imageChart2" height="35" value="../images/chartfull.png" 
+                                        rendered="#{not empty produtoBean.todosProdutos1}"/>
                                     </h:panelGrid>                                
                                 </f:facet>
                                 <p:commandLink action="#{carrinhoBean.addProduto}" 
                                                value="+ " styleClass="hiperlink" ajax="false">
                                     <f:setPropertyActionListener value="#{prod}" target="#{carrinhoBean.produto}" /> 
                                 </p:commandLink>
-                                <h:outputLabel value="(#{carrinhoBean.getItens(prod)})" id="qtd" styleClass="hiperlink" />
+                                <h:outputLabel value="(#{prod.qtd})" id="qtd" styleClass="hiperlink" />
                                 <p:commandLink action="#{carrinhoBean.remProduto}" 
                                                value=" -" styleClass="hiperlink" ajax="false" >
                                     <f:setPropertyActionListener value="#{prod}" target="#{carrinhoBean.produto}" /> 

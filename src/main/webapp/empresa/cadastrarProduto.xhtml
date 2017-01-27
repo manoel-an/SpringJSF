@@ -68,9 +68,15 @@
                             </p:inputText>
                             <p:message for="preco" display="icon"/>
                            
-                            <h:outputLabel styleClass="labels" value="#{msgs['produtos.quantidade']}:" />  
-                            <p:inputText value="#{produtoBean.produto.qtd}" required="true">
+                         	<h:outputLabel styleClass="labels" for="quantidade" value="#{msgs['produtos.quantidade']}:" />  
+                            <p:inputText id="quantidade" value="#{produtoBean.produto.qtd}" required="true" onkeypress="return SomenteNumero(event);" 
+                            			onchange="validaNumero(this);"
+                                         requiredMessage="#{msgs['produtos.quantidadeRequired']}"
+                                         validatorMessage="#{msgs['produtos.quantidadeErrado']}"
+                                         converterMessage="#{msgs['produtos.quantidadeErrado']}">
+                            <f:validateLength maximum="2" for="quantidade"/>
                             </p:inputText>
+                            <p:message for="quantidade" display="icon"/>                            
                         </h:panelGrid>
 
                         <br/>
