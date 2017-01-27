@@ -5,7 +5,11 @@
 
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +27,10 @@ public class ProdutoBean {
     private Produto produto;
     @Autowired
     private ProdutoDAO produtoDAO;
+
+    private float total;
+
+    private float subtotal = 0f;
 
     /**
      * @return the produto
@@ -66,7 +74,10 @@ public class ProdutoBean {
     // return model;
     // }
     public List getTodosProdutos1() {
-        List<Produto> lstProd = produtoDAO.todosProdutos();
+        List<Produto> lstProd = new ArrayList<Produto>(0);
+        if (lstProd.size() == 0) {
+            lstProd = produtoDAO.todosProdutos();
+        }
         return lstProd;
     }
 
@@ -90,6 +101,62 @@ public class ProdutoBean {
     public String atualizarProduto() {
         produtoDAO.atualizar(produto);
         return "mostrarProdutos";
+    }
+
+    public String retornarPaginaProdutos() {
+        return "mostrarProdutos";
+    }
+
+    public void init() {
+        @SuppressWarnings("unchecked")
+        List<Produto> itens = getTodosProdutos1();
+        float subtotal = 0f;
+        if (itens.size() > 0) {
+            for (Produto produto : itens) {
+                subtotal += (produto.getPreco() * produto.getQtd());
+            }
+        }
+        setTotal(subtotal);
+    }
+
+    public void incrementarProduto() {
+        this.subtotal = 0f;
+        int qtd = this.produto.getQtd();
+        qtd++;
+        if (qtd > 99) {
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    FacesHelper.getMessage("produtos.qtdLimiteInvalido"), "");
+            contexto.addMessage(null, msg);
+            this.retornarPaginaProdutos();
+        } else {
+            this.produto.setQtd(qtd);
+            @SuppressWarnings("unchecked")
+            List<Produto> produtos = produtoDAO.todosProdutos();
+            for (Produto produto : produtos) {
+                this.subtotal += (produto.getPreco() * produto.getQtd());
+            }
+            this.subtotal += this.produto.getPreco();
+            setTotal(this.subtotal);
+            this.atualizarProduto();
+        }
+    }
+
+    public void decrementarProduto() {
+        int qtd = this.produto.getQtd();
+        qtd--;
+        if (qtd < 1) {
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                    FacesHelper.getMessage("produtos.qtdInvalido"), "");
+            contexto.addMessage(null, msg);
+            this.retornarPaginaProdutos();
+        } else {
+            this.produto.setQtd(qtd);
+            this.subtotal -= this.produto.getPreco();
+            setTotal(this.subtotal);
+            this.atualizarProduto();
+        }
     }
 
     /**
@@ -124,8 +191,32 @@ public class ProdutoBean {
      * @throws EmpresaDAOException
      */
     public String incluirProduto() {
+        @SuppressWarnings("unchecked")
+        List<Produto> produtos = produtoDAO.todosProdutos();
+        for (Produto produto : produtos) {
+            this.subtotal += (produto.getPreco() * produto.getQtd());
+        }
+        this.subtotal += (this.produto.getPreco() * this.produto.getQtd());
+        setTotal(this.subtotal);
         produtoDAO.salvar(produto);
         return "mostrarProdutos";
+    }
+
+    public float getTotal() {
+        this.init();
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public float getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(float subtotal) {
+        this.subtotal = subtotal;
     }
 
     // Os metodos abaixo nao foram utilizados nesse projeto

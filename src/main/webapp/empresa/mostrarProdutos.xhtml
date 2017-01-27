@@ -85,17 +85,23 @@
                                         rendered="#{not empty produtoBean.todosProdutos1}"/>
                                     </h:panelGrid>                                
                                 </f:facet>
-                                <p:commandLink action="#{carrinhoBean.addProduto}" 
+                                <p:commandLink action="#{produtoBean.incrementarProduto}" 
                                                value="+ " styleClass="hiperlink" ajax="false">
-                                    <f:setPropertyActionListener value="#{prod}" target="#{carrinhoBean.produto}" /> 
+                                    <f:setPropertyActionListener value="#{prod}" target="#{produtoBean.produto}" /> 
                                 </p:commandLink>
                                 <h:outputLabel value="(#{prod.qtd})" id="qtd" styleClass="hiperlink" />
-                                <p:commandLink action="#{carrinhoBean.remProduto}" 
+                                <p:commandLink action="#{produtoBean.decrementarProduto}" 
                                                value=" -" styleClass="hiperlink" ajax="false" >
-                                    <f:setPropertyActionListener value="#{prod}" target="#{carrinhoBean.produto}" /> 
+                                    <f:setPropertyActionListener value="#{prod}" target="#{produtoBean.produto}" /> 
                                 </p:commandLink>
                             </p:column>
-
+                            
+                            <f:facet name="footer" class="rowRoxo">
+	                            <div align="right">
+		                            <h:outputText value="#{msgs['produtos.subtotal']}: #{produtoBean.total} " style="font-size: 16px;
+		                                          color: black" />
+	                            </div>
+                            </f:facet>                            
                         </p:dataTable> 
 
                     </p:panel>
@@ -107,8 +113,8 @@
                     </h:panelGrid>
 
                 </div>
+                <p:messages />
             </h:form>
-            <h:messages />
         </ui:define>
     </ui:composition>
 </html>
